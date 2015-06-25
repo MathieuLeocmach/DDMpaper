@@ -57,7 +57,7 @@ reprint,%
 
 \preprint{AIP/123-QED}
 
-\title[Sample title]{Differential Dynamics Microscopy to characterize brownian motion and Bacteria motility}% Force line breaks with \\
+\title[Sample title]{Differential Dynamics Microscopy to characterize Brownian motion and bacteria motility}% Force line breaks with \\
 
 \author{David Germain}
 \author{Mathieu Leocmach}
@@ -83,17 +83,20 @@ Abstract
 
 \section{\label{sec:level1}Introduction}
 
-Video Particle Tracking (VPT) and Dynamic Light Scattering (DLS) are two well-known microscopy technique. The first one, by tracking the position of a particle as a function of time in the real space, allows to get precise informations of small portions of a sample \citep{7_jaqaman2008robust}. On the other hand, scattering enables to get average informations about the dynamics of a sample by monitoring the fluctuations of intensity as a function of time \citep{18_sartor2003dynamic}. Unlike particle tracking, it works in the Fourier space. Applying those two methods simultaneously would allow a powerful combination of their complementary informations but it is not easy to apply as they are based on two different process. In VPT, a direct capture of the sample through a microscope is needed whereas DLS is based on the measure of the scattering angle to get the spatial wave vectors of the sample. To do so, the many attempts which has been done implied the customization of a microscope \citep{27_kaplan1999light, 28_valentine2001microscope, 29_dzakpasu2004dynamic} (Laser light source, suitable lens to obtain the Fourier transform of the sample optically, several hardware to do both the calculation for the VPT and the DLS, ...). The difficulties to build such an equipment limit the number of laboratories which could do such experiments.
+Quantifying the microscopic dynamics of a suspension gives access to interesting physics, both in teaching and research context. Precise measures of Brownian motion a century ago firmly proved the existence of atoms. More recently, the motion of tracer colloids has been used to extract the mechanical properties of fluids, gels, pastes, cell cytoplasm and foods, measuring viscosity or elasticity at scales unreachable by macroscopic techniques. In the past decade, the collective motion of active systems, fish schools, bird flocks and bacteria swarms has become the focus of attention of a large research community. In all these examples, one need to get access to the motion of the particles, either colloids or bacteria.
+
+Video Particle Tracking (VPT) and Dynamic Light Scattering (DLS) are two well-known techniques. VPT consists in tracking the position of a particle as a function of time and then analyzing this trajectory. It provides precise information of small portions of a sample \citep{7_jaqaman2008robust}. DLS consists in shining a laser though the suspension and monitoring the fluctuations of scattered intensity as a function of time. It yields average information about the dynamics of a sample \citep{18_sartor2003dynamic}.
+
+
+
+
+% Unlike particle tracking, it works in the Fourier space. Applying those two methods simultaneously would allow a powerful combination of their complementary informations but it is not easy to apply as they are based on two different process. In VPT, a direct capture of the sample through a microscope is needed whereas DLS is based on the measure of the scattering angle to get the spatial wave vectors of the sample. To do so, the many attempts which has been done implied the customization of a microscope \citep{27_kaplan1999light, 28_valentine2001microscope, 29_dzakpasu2004dynamic} (Laser light source, suitable lens to obtain the Fourier transform of the sample optically, several hardware to do both the calculation for the VPT and the DLS, ...). The difficulties to build such an equipment limit the number of laboratories which could do such experiments.
 
  
 
-Here, we propose an alternative method to obtain the same kind of informations as DLS, but without the necessity to use a custom microscope. Indeed, rather than working directly in the Fourier space, we apply a Fourier transform algorithm directly on images taken by a camera connected to a standard light microscope with a normal light source. This method is known as Differential Dynamic Microscopy (DDM).
+Here, we describe an alternative method call Differential Dynamic Microscopy (DDM) recently proposed by XXX. DDM uses a standard light microscope linked to a camera and relies on digital Fourier transform to obtain the same kind of information as DLS, but with some of the spatial resolution of VPT. In a teaching context, since DDM starts with a real-space video of the moving objects it is less abstract than DLS. The explicit use of Fourier transform may also help to demystify this operation that is at the cornerstone of modern physics. 
 
-In this article, we will apply DDM to two sets of different micrometric particles, colloids at first, then motile bacteria.
-
- 
-
-In a first part, we will present the materials and method we used to prepare the samples as well as the acquisition parameters. Then we will use the Brownian motion as a support to the presentation of the DDM. We will show the multiple steps of the application of DDM and how it is possible to get the Brownian diffusion coefficient. In a last part, we will apply DDM to bacteria of the species \textit{salmonella} and show that it is possible to obtain the Brownian diffusion coefficient, but also the mean speed of run, the rate of motile bacteria, and a preview of the speed distribution.
+In this article, we will apply DDM to two sets of different micrometric particles, colloids at first, then motile bacteria. In a first part, we will present the materials and method we used to prepare the samples as well as the acquisition parameters. Then we will use the Brownian motion as a support to a step by step presentation of the DDM in a fully understood context. In a last part, we will apply DDM to bacteria of the species \textit{salmonella} and show that it is possible to obtain the Brownian diffusion coefficient, but also the mean speed of run, the rate of motile bacteria, and a preview XXX of the velocity distribution.
 
 \section{Materials and method}
 
