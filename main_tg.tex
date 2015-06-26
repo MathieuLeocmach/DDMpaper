@@ -37,7 +37,7 @@ reprint,%
 \usepackage{geometry}
 \usepackage{caption}
 \usepackage{subcaption}
-\usepackage[squaren,Gray]{SIunits}
+\usepackage{siunitx}
 \usepackage{colonequals}
 \usepackage{enumitem}
 \usepackage{amsmath}
@@ -100,22 +100,23 @@ In this article, we will apply DDM to two sets of different micrometric particle
 
 \section{Materials and method}
 
-We capture a stack of images of aqueous dispersions of colloids or bacteria observed under a microscope.
+%We capture a stack of images of aqueous dispersions of colloids or bacteria observed under a microscope.
 
 \subsection{Colloidal particles}
 
-In section \ref{sec:BrownSection}, we study the dynamics of colloidal particles. We use commercially available colloids from XXX. The colloids are composed of polystyrene of density $\rho_\text{coll} = \unit{1,06\cdot10^3}{\kilogram\per\cubic\meter}$ and have a diameter $d = \unit{1}{\micro\meter}$. The commercial dispersion is diluted 50 times in water to a final concentration of $\unit{10^8}{colloids\per\milli\liter}$ so that we have a dilute dispersion: the distance between two colloids is big compared to $d$, typically ten times $d$. This concentration remains sufficiently high to observe enough particles in the camera field of view and to accumulate a decent statistics.
+Colloids are FluoSpheres\circledR{} from Thermo Fisher Scientific. They are spheres made of polystyrene of density $\rho_\text{coll} = \SI{1.06}{\gram\per\litre}$ and have a catalog diameter of $d = \SI{1.0}{\micro\meter}$. The commercial dispersion is diluted 50 times in water to a final concentration of $\SI{1e8}{colloids\per\milli\liter}$ so that we have a dilute dispersion: the distance between two colloids is large compared to $d$, typically $10 d$. This concentration remains sufficiently high to observe enough particles in the camera field of view and to accumulate decent statistics.
 
+Polystyrene refractive index is $\approx 1.6$, larger than the one of water $\approx 1.3$, so the colloids are visible by usual light microscopy. However cleaner images can be obtained by fluorescence microscopy, exiting at \SI{540}{\nano\metre} and filtering to obtain the emmited light at \SI{560}{\nano\metre}.
 
-%The size of a water molecule (H$_2$O) $\simeq \unit{0.34}{\nano\meter}$, which is far smaller than the size of a sphere, so, we are in colloidal regime. Also, during our acquisitions, sedimentation is negligible, $Pe_\text{g} \gg 1$.
+%The size of a water molecule (H$_2$O) $\simeq \SI{0.34}{\nano\meter}$, which is far smaller than the size of a sphere, so, we are in colloidal regime. Also, during our acquisitions, sedimentation is negligible, $Pe_\text{g} \gg 1$.
 %We also checked afterwards directly on the acquisitions. If there were sedimentation, we would lose the focus on colloids. Also, we checked if there were a flow in the microscope slide by looking at the motion of colloids. If there were a flow, the average motion of colloids would be in the direction of this flow instead of being equal to zero.
 
 \subsection{Bacteria}
 
-In section \ref{sec:BactSection}, we study the motion of \textit{Salmonella} bacteria (DSM. 1103) \citep{21_fabrega2013salmonella}. Our bacteria are stored in a freezer at $\unit{-80}{\degree C}$ in a mixture of water ($\simeq \unit{33}{\%}$) and glycerol ($\simeq \unit{66}{\%}$). First, using a sterile inoculation loop, we take a small volume of this storage solution  and we spread it on a sterile Petri dish filled with a mixture of agar and LB ($\unit{500}{\milli\liter}$ of LB/agar was made of $\unit{5}{\gram}$ of NaCl, $\unit{5}{\gram}$ of Tryptone, $\unit{2.5}{\gram}$ of Yeast Extract, $\unit{7.5}{\gram}$ of Agar and water up to $\unit{500}{\milli\liter}$). We start from one side of the dish, then we make a zig-zag trajectory with the inoculation loop being careful there is no crossing. Then we take another loop, and we start a new trajectory from the end of the previous one. Second, the agar plates are closed and placed in an incubator at $\unit{37}{\degree C}$. The agar plates are oriented such that the LB/agar gel is at the top, to prevent the condensation from disturbing the development of the bacteria. After $\simeq$ 12 hours, we observe the formation of monoclonal circular colonies. Third, Using \textcolor{red}{(an ?)} inoculation loop, we take a monoclonal colony of bacteria from LB/Agar plate and disperse it in a \textsc{Falcon} tube with $\simeq \unit{5}{\milli\liter}$ TN growth medium. The TN growth medium is sterile and composed of $\unit{4}{\gram\per\liter}$ of bacto-tryptone, $\unit{2.5}{\gram\per\liter}$ of NaCl and $0.4\%$ of glycerol diluted in water. The \textsc{Falcon} tubes have an oxygen permeable cap which allows the bacteria to breath and limits evaporation. Those bacteria are pre-cultured for a night at $\unit{32}{\degree C}$ and shaked at 300 rpm in an Incu-Shaker 10L. Finally, we collected $\unit{50}{\micro\liter}$ of the solution of bacteria with a sterile pipette and we put it in a new \textsc{Falcon} tube filled with $\simeq \unit{5}{\milli\liter}$ of TN growth medium. The tube is then placed in the Incu-Shaker 10L at 300 rpm and $\unit{32}{\degree C}$ for 1h30. Around this time the optical density at $\unit{600}{\nano\meter}$ is around OD=0.5 and most bacteria are swimming. It is important to grow bacteria in a nutriment poor media and to collect them early on, at low concentrations, otherwise the bacteria tend not to develop a flagella.
+In section \ref{sec:BactSection}, we study the motion of \textit{Salmonella} bacteria (DSM. 1103) \citep{21_fabrega2013salmonella}. Our bacteria are stored in a freezer at $\SI{-80}{\degree C}$ in a mixture of water ($\simeq \SI{33}{\%}$) and glycerol ($\simeq \SI{66}{\%}$). First, using a sterile inoculation loop, we take a small volume of this storage solution  and we spread it on a sterile Petri dish filled with a mixture of agar and LB ($\SI{500}{\milli\liter}$ of LB/agar was made of $\SI{5}{\gram}$ of NaCl, $\SI{5}{\gram}$ of Tryptone, $\SI{2.5}{\gram}$ of Yeast Extract, $\SI{7.5}{\gram}$ of Agar and water up to $\SI{500}{\milli\liter}$). We start from one side of the dish, then we make a zig-zag trajectory with the inoculation loop being careful there is no crossing. Then we take another loop, and we start a new trajectory from the end of the previous one. Second, the agar plates are closed and placed in an incubator at $\SI{37}{\degree C}$. The agar plates are oriented such that the LB/agar gel is at the top, to prevent the condensation from disturbing the development of the bacteria. After $\simeq$ 12 hours, we observe the formation of monoclonal circular colonies. Third, Using \textcolor{red}{(an ?)} inoculation loop, we take a monoclonal colony of bacteria from LB/Agar plate and disperse it in a \textsc{Falcon} tube with $\simeq \SI{5}{\milli\liter}$ TN growth medium. The TN growth medium is sterile and composed of $\SI{4}{\gram\per\liter}$ of bacto-tryptone, $\SI{2.5}{\gram\per\liter}$ of NaCl and $0.4\%$ of glycerol diluted in water. The \textsc{Falcon} tubes have an oxygen permeable cap which allows the bacteria to breath and limits evaporation. Those bacteria are pre-cultured for a night at $\SI{32}{\degree C}$ and shaked at 300 rpm in an Incu-Shaker 10L. Finally, we collected $\SI{50}{\micro\liter}$ of the solution of bacteria with a sterile pipette and we put it in a new \textsc{Falcon} tube filled with $\simeq \SI{5}{\milli\liter}$ of TN growth medium. The tube is then placed in the Incu-Shaker 10L at 300 rpm and $\SI{32}{\degree C}$ for 1h30. Around this time the optical density at $\SI{600}{\nano\meter}$ is around OD=0.5 and most bacteria are swimming. It is important to grow bacteria in a nutriment poor media and to collect them early on, at low concentrations, otherwise the bacteria tend not to develop a flagella.
 
 \subsection{Microscope slide}
-For the microscope observations, the aqueous suspension of colloids or bacteria are enclosed in a hermetic microscope slide (FIG. \ref{Slide}). The  slide is composed of a  glass slide (\textsc{RS France}) and a cover slip (\textsc{Menszel-gl\"aser}) spaced by two lamellas of parafilm (\textsc{Bemis}).  The space between the glass slide and the cover slip is approximately $\unit{125}{\micro\meter}$.  The slide is then heated on a hotplate for 5 minutes to melt the parafilm thus sticking the cover slip and the glass slide together. A suspension of colloids or bacteria is then introduced into the enclosure by capillarity. Finally, the sample is sealed by application of glue (\textsc{Norland Products}) which hardens in contact of UV light ($\lambda = \unit{365}{\nano\meter}$).
+For the microscope observations, the aqueous suspension of colloids or bacteria are enclosed in a hermetic microscope slide (FIG. \ref{Slide}). The  slide is composed of a  glass slide (\textsc{RS France}) and a cover slip (\textsc{Menszel-gl\"aser}) spaced by two lamellas of parafilm (\textsc{Bemis}).  The space between the glass slide and the cover slip is approximately $\SI{125}{\micro\meter}$.  The slide is then heated on a hotplate for 5 minutes to melt the parafilm thus sticking the cover slip and the glass slide together. A suspension of colloids or bacteria is then introduced into the enclosure by capillarity. Finally, the sample is sealed by application of glue (\textsc{Norland Products}) which hardens in contact of UV light ($\lambda = \SI{365}{\nano\meter}$).
 
 
 \begin{figure}[H]
@@ -129,11 +130,11 @@ For the microscope observations, the aqueous suspension of colloids or bacteria 
 
 The colloidal suspension is observed with light microscope (\textsc{nikon Eclipse Ti}) in visible light with an objective $10 \times$ and a numerical aperture $N.A. = 0.3$. The focus is made in the middle of the microscope slide in z-direction. It allows to be far from the boundaries where colloids could be stuck on the slide and could not move in the 3 dimensions. Image are acquired with a camera (\textsc{Hamamatsu digital camera C11440}).
 
-The images are coded in $\unit{8}{bits}$  grey-scale: each pixel intensity is proportional to the incoming light intensity from the sample and varies linearly from  0 (black) to 255 (white). Using an exposure time of $\unit{1}{\milli\second}$, we adjusted the brightness of the microscope light in order to have a maximum number of pixel around a value of $\sim 120$ which minimize the amount of saturated pixels.
+The images are coded in $\SI{8}{bits}$  grey-scale: each pixel intensity is proportional to the incoming light intensity from the sample and varies linearly from  0 (black) to 255 (white). Using an exposure time of $\SI{1}{\milli\second}$, we adjusted the brightness of the microscope light in order to have a maximum number of pixel around a value of $\sim 120$ which minimize the amount of saturated pixels.
 
-The choice of the acquisitions parameters is a compromise between the spatial resolution and the temporal resolution. With the $10\times$ objective, a pixel correspond to $\unit{0.645}{\micro\meter}$, roughly the optical resolution of the microscope. A bacteria or the colloids is about $\unit{1}{\micro\meter}$ and therefore correspond to a few pixels on the camera. We chose a $512 \times 512$ px$^2$ field of view which is large enough to capture the motion of 100 of bacteria and small enough so that we may have a high acquisition frequency, up to $\unit{400}{\hertz}$.
+The choice of the acquisitions parameters is a compromise between the spatial resolution and the temporal resolution. With the $10\times$ objective, a pixel correspond to $\SI{0.645}{\micro\meter}$, roughly the optical resolution of the microscope. A bacteria or the colloids is about $\SI{1}{\micro\meter}$ and therefore correspond to a few pixels on the camera. We chose a $512 \times 512$ px$^2$ field of view which is large enough to capture the motion of 100 of bacteria and small enough so that we may have a high acquisition frequency, up to $\SI{400}{\hertz}$.
 
-By looking at the videos of colloids and bacteria, we see that the dynamics happens on the time scale of $\unit{1}{\second}$. We therefore chose to acquire a first stack of 4000 images of  $512 \times 512$ px$^2$ at $\unit{400}{\hertz}$ and a second similar stack at $\unit{4}{\hertz}$. The stack size, 4000 images, is limited by the camera buffer memory. At $\unit{400}{\hertz}$ it is impossible to directly sent the data from the camera to the computer during the capture, so we chose to temporarily save the acquisition on the buffer of the camera during the capture, and, once it is over, we send the data from the buffer of the camera to the computer. With this procedure, the smallest time scale is $\unit{2.5\cdot 10^{-3}}{\second}$ and the largest is $\unit{1000}{\second}$ and the smallest length scale is $\unit{0.645}{\micro\meter}$ micron and the largest is $\unit{330}{\micro\meter}$. 
+By looking at the videos of colloids and bacteria, we see that the dynamics happens on the time scale of $\SI{1}{\second}$. We therefore chose to acquire a first stack of 4000 images of  $512 \times 512$ px$^2$ at $\SI{400}{\hertz}$ and a second similar stack at $\SI{4}{\hertz}$. The stack size, 4000 images, is limited by the camera buffer memory. At $\SI{400}{\hertz}$ it is impossible to directly sent the data from the camera to the computer during the capture, so we chose to temporarily save the acquisition on the buffer of the camera during the capture, and, once it is over, we send the data from the buffer of the camera to the computer. With this procedure, the smallest time scale is $\SI{2.5e-3}{\second}$ and the largest is $\SI{1000}{\second}$ and the smallest length scale is $\SI{0.645}{\micro\meter}$ micron and the largest is $\SI{330}{\micro\meter}$. 
 
 
 
@@ -150,9 +151,9 @@ To observe the Brownian motion of a particle in a Newtonian fluid, several condi
 
 \begin{eqnarray}
 E_\text{th} &=& k_\text{B} T\\ \nonumber
-&=& \unit{4.0\cdot10^{-21}}{\joule} \\ \nonumber
-E_\text{g} &=& \frac{4}{3} \cdot \pi \cdot r^3 \cdot (\rho_\text{coll} - \rho_\text{solution})\cdot g \cdot 2r \nonumber \\ \nonumber
-&=& \unit{3.1\cdot10^{-22}}{\joule} \\ \nonumber
+&=& \SI{4.0e-21}{\joule} \\ \nonumber
+E_\text{g} &=& \frac{4}{3} \pi r^3 (\rho_\text{coll} - \rho_\text{solution}) g  2r \nonumber \\ \nonumber
+&=& \SI{3.1e-22}{\joule} \\ \nonumber
 \Rightarrow Pe_\text{g} &=& \frac{E_\text{th}}{E_\text{g}} \gg 1 \nonumber
 \end{eqnarray}
 
@@ -162,19 +163,19 @@ With $\rho_\text{coll}$ the density of a colloid, $\rho_\text{solution}$ the den
 \begin{tabular}{|m{0.7\linewidth}|m{0.28\linewidth}|}
   \hline
   \vspace{1mm}
-  Molecular diameter of water (H$_2$O) \citep{17_marcus1998properties}  & \vspace{2mm} $\unit{0.34}{\nano\meter}$ \vspace{1mm}  \\
+  Molecular diameter of water (H$_2$O) \citep{17_marcus1998properties}  & \vspace{2mm} $\SI{0.34}{\nano\meter}$ \vspace{1mm}  \\
   \hline
   \vspace{1mm}
-  Temperature $T$ of the suspension & \vspace{2mm} $\unit{20}{\degree C}$ \vspace{1mm} \\
+  Temperature $T$ of the suspension & \vspace{2mm} $\SI{20}{\degree C}$ \vspace{1mm} \\
   \hline
   \vspace{1mm}
- Tabulated viscosity of water at $T$ & \vspace{2mm} $\unit{1.002}{\milli\pascal\cdot\second}$ \vspace{1mm} \\
+ Tabulated viscosity of water at $T$ & \vspace{2mm} $\SI{1.002}{\milli\pascal\second}$ \vspace{1mm} \\
   \hline
   \vspace{1mm}
-  Density $\rho_\text{coll}$ of polystyrene & \vspace{2mm} $\unit{1.04}{\gram\per\centi\meter\cubed}$ \vspace{1mm} \\
+  Density $\rho_\text{coll}$ of polystyrene & \vspace{2mm} $\SI{1.04}{\gram\per\centi\meter\cubed}$ \vspace{1mm} \\
   \hline
   \vspace{1mm}
- Colloid diameter $2r$ & \vspace{2mm} $\unit{1}{\micro\meter}$ \vspace{1mm} \\
+ Colloid diameter $2r$ & \vspace{2mm} $\SI{1}{\micro\meter}$ \vspace{1mm} \\
   \hline
   \end{tabular}
   \captionof{table}{Properties of colloidal particles and their medium}
@@ -217,7 +218,7 @@ D = \frac{k_\text{B} T}{6 \pi \eta r}
 
 Just as Dynamic Light Scattering (DLS) \citep{18_sartor2003dynamic}, the DDM yields average informations about a sample dynamics in the Fourier space. In DLS we measure the intensity as a function of time scattered by the sample directly in the Fourier space whereas in  DDM, we numerically Fourier transforms the images of the sample as a function of time \citep{2_DDM}. In both cases, we obtain the intermediate scattering function (ISF), $f$, a correlation function. We can get quantitative informations about the dynamic of the sample either by scaling the correlation function or by fitting the correlation with a model.
 
-To qualitatively get a feeling of the ISF, in FIG. \ref{SketchCorrelation}, we have superimposed two images of a colloidal dispersion separated by a lag time $\Delta t$. At $\Delta t = \unit{0.01}{\second}$, the colloids have barely moved and $f \simeq 1$. At $\Delta t = \unit{1}{\second}$, the colloids have moved and we can identity where they have come from.  At $\Delta t = \unit{100}{\second}$, the colloids have moved so much that we no longer know where they have come from and $f \simeq 0$: the 2 images are totally decorrelated.
+To qualitatively get a feeling of the ISF, in FIG. \ref{SketchCorrelation}, we have superimposed two images of a colloidal dispersion separated by a lag time $\Delta t$. At $\Delta t = \SI{0.01}{\second}$, the colloids have barely moved and $f \simeq 1$. At $\Delta t = \SI{1}{\second}$, the colloids have moved and we can identity where they have come from.  At $\Delta t = \SI{100}{\second}$, the colloids have moved so much that we no longer know where they have come from and $f \simeq 0$: the 2 images are totally decorrelated.
 
 
 \begin{figure}[H]
@@ -230,7 +231,7 @@ To qualitatively get a feeling of the ISF, in FIG. \ref{SketchCorrelation}, we h
 The correlation function $F(\vec{q}, \, \Delta t)$ and the normalized correlation function $f(\vec{q}, \, \Delta t)$ are defined as \citep{19_goodman2005introduction} :
 
 \begin{eqnarray}
-F(\vec{q}, \, \Delta t) &=& \langle \ \hat{I}^*(\vec{q},\, t) \cdot \hat{I}(\vec{q},\, t+\Delta t) \ \rangle \\
+F(\vec{q}, \, \Delta t) &=& \langle \ \hat{I}^*(\vec{q},\, t) \hat{I}(\vec{q},\, t+\Delta t) \ \rangle \\
 f(\vec{q}, \, \Delta t) &=& \frac{F(\vec{q}, \, \Delta t)}{F(\vec{q}, \, 0)}
 \end{eqnarray}
 
@@ -241,7 +242,7 @@ The ISF  is directly measured from $\hat{I}(\vec{q}, \, t)$ in DLS and from $\la
 \begin{eqnarray}
 \langle \, |\widehat{\Delta I}|^2 \, \rangle &=& \langle \, |\widehat{I}(\vec{q},t+\Delta t) - \widehat{I}(\vec{q},t)|^2 \, \rangle \\ \nonumber
 &=& \langle \, |\widehat{I}(\vec{q},t+ \Delta t)|^2 + |\widehat{I}(\vec{q},t)|^2 \\ \nonumber
-&& \qquad \quad - 2 \, \widehat{I}^*(\vec{q},t+\Delta t) \cdot \widehat{I}(\vec{q},t) \, \rangle\\\nonumber
+&& \qquad \quad - 2 \, \widehat{I}^*(\vec{q},t+\Delta t) \widehat{I}(\vec{q},t) \, \rangle\\\nonumber
 &=& \underbrace{2F(\vec{q}, 0)}_{\colonequals \, A(\vec{q})} \bigg[ 1-\underbrace{\frac{F(\vec{q}, \Delta t)}{F(\vec{q}, 0)}}_{f(\vec{q}, \Delta t)} \bigg]\\\nonumber
 \end{eqnarray}
 
@@ -253,7 +254,7 @@ The contribution of the noise due to the camera is taken into account by adding 
 
 The parameters $A(\vec{q})$ and $B(\vec{q})$ can be used as fitting parameters or measured independently thus giving access directly to the ISF. For both colloids and bacteria, the samples we study are both homogeneous and isotropic, which means that we don't lose information by studying $q \colonequals |\vec{q}| = \sqrt{q_x^2 + q_y ^2}$. To convert our pictures depending on $q_x$ and $q_y$ into a function depending on $q$, we realise a radial averages centred on the middle of the FFT image. The range of accessible $q$ depends on both the image and pixel size.
 
-We note that the calculation time necessary to realize all the FFT of images at all the accessible $\Delta t$ can become very long (some hours). To \textcolor{red}{circonvint} this issue we sampled $\Delta t$ logarithmically with 10 points per decades.  Also, we didn't average over all the $|\widehat{\Delta I}|^2$ at constant $\Delta t$. We reduced the average on the first 100 differences of images which is sufficient to have isotropic Fourier transforms. With those optimizations, the calculation time fell to some minutes. We ran the DDM procedure on the both stacks of images at $\unit{400}{\hertz}$ and $\unit{4}{\hertz}$ independently. Then the we merged the two sets of data by multiplying each value of $|\widehat{\Delta I}|^2$ obtained at $\unit{4}{\hertz}$ so that $|\widehat{\Delta I}(q,\Delta t = \unit{0.25}{\second})|^2_{\unit{4}{\hertz}}$=$|\widehat{\Delta I}(q,\Delta t = \unit{0.25}{\second})|^2_{\unit{400}{\hertz}}$. Finally, we average the values of the curves at $\unit{4}{\hertz}$ and $\unit{400}{\hertz}$ in the overlap interval, from $\unit{0.25}{\second}$ to $\unit{10}{\second}$). We obtain $\langle \, |\widehat{\Delta I}|^2 \, \rangle (q, \Delta t)$ for $\Delta t$ from $\unit{2.5\cdot 10^{-3}}{\second}$ to $\unit{1000}{\second}$. The DDM procedure is summarized in Table \ref{AlgoTable}.
+We note that the calculation time necessary to realize all the FFT of images at all the accessible $\Delta t$ can become very long (some hours). To \textcolor{red}{circonvint} this issue we sampled $\Delta t$ logarithmically with 10 points per decades.  Also, we didn't average over all the $|\widehat{\Delta I}|^2$ at constant $\Delta t$. We reduced the average on the first 100 differences of images which is sufficient to have isotropic Fourier transforms. With those optimizations, the calculation time fell to some minutes. We ran the DDM procedure on the both stacks of images at $\SI{400}{\hertz}$ and $\SI{4}{\hertz}$ independently. Then the we merged the two sets of data by multiplying each value of $|\widehat{\Delta I}|^2$ obtained at $\SI{4}{\hertz}$ so that $|\widehat{\Delta I}(q,\Delta t = \SI{0.25}{\second})|^2_{\SI{4}{\hertz}}$=$|\widehat{\Delta I}(q,\Delta t = \SI{0.25}{\second})|^2_{\SI{400}{\hertz}}$. Finally, we average the values of the curves at $\SI{4}{\hertz}$ and $\SI{400}{\hertz}$ in the overlap interval, from $\SI{0.25}{\second}$ to $\SI{10}{\second}$). We obtain $\langle \, |\widehat{\Delta I}|^2 \, \rangle (q, \Delta t)$ for $\Delta t$ from $\SI{2.5e-3}{\second}$ to $\SI{1000}{\second}$. The DDM procedure is summarized in Table \ref{AlgoTable}.
 
 \begin{tabular}{ |p{0.98\linewidth}| }
   \hline
@@ -261,10 +262,10 @@ We note that the calculation time necessary to realize all the FFT of images at 
   Two acquisitions:
   \begin{itemize}
   \item 4000 images $I(\vec{x},t)$ per acquisitions
-  \item Acquisiton 1 : $f=\unit{400}{\hertz} \rightarrow t_\text{max} = \unit{10}{\second}$
-  \item Acquisiton 2 : $f=\unit{4}{\hertz} \rightarrow t_\text{max} = \unit{1000}{\second}$
-  \item Exposition time = $\unit{10^{-3}}{\second}$
-  \item Resolution of images = $\unit{512 \cdot 512}{px^2}$
+  \item Acquisiton 1 : $f=\SI{400}{\hertz} \rightarrow t_\text{max} = \SI{10}{\second}$
+  \item Acquisiton 2 : $f=\SI{4}{\hertz} \rightarrow t_\text{max} = \SI{1000}{\second}$
+  \item Exposition time = $\SI{1}{\milli\second}$
+  \item Resolution of images = $512\times\SI{512}{px^2}$
   \end{itemize}
   \\
   \hline
@@ -286,9 +287,9 @@ We note that the calculation time necessary to realize all the FFT of images at 
   \hline\\
   Scales:
   \begin{itemize}
-  \item $\unit{1}{px} = \unit{0.645}{\micro\meter}$
-  \item $q_\text{min} = \frac{2 \pi}{0.645 \cdot 512} = \unit{1.9\cdot10^{-2}}{\micro\reciprocal\meter}$
-  \item $q_\text{max} = \frac{2 \pi}{0.645 \cdot 512}\cdot 256 = \unit{4.9}{\micro\reciprocal\meter}$
+  \item $\SI{1}{px} = \SI{0.645}{\micro\meter}$
+  \item $q_\text{min} = \frac{2 \pi}{0.645 \times 512} = \SI{1.9e-2}{\per\micro\meter}$
+  \item $q_\text{max} = \frac{2 \pi}{0.645 \times 512} 256 = \SI{4.9}{\per\micro\meter}$
   \end{itemize}\\
   \hline
 \end{tabular}
@@ -332,12 +333,12 @@ For a stochastic process such as the Brownian motion, the decrease of the correl
 \begin{array}{rcl}
 A_0 &=& \langle \, |\widehat{\Delta I}|^2 \, \rangle (q,\Delta t_\text{max}) - \langle \, |\widehat{\Delta I}|^2 \, \rangle (q,\Delta t_\text{min}) \\
 B_0 &=& \langle \, |\widehat{\Delta I}|^2 \, \rangle (q,\Delta t_\text{min}) \\
-\tau_\text{d} &=& \unit{1}{\second}
+\tau_\text{d} &=& \SI{1}{\second}
 \end{array}
 \right.
 \end{equation}
 
-\textcolor{red}{where $\Delta t_\text{max}$ is the maximum interval of time between 2 images ($ = \unit{999.75}{\second}$) and $\Delta t_\text{min}$ is the minimum interval of time between 2 pictures ($ = \unit{2.5\cdot10^{-3}}{\second}$).}
+\textcolor{red}{where $\Delta t_\text{max}$ is the maximum interval of time between 2 images ($ = \SI{999.75}{\second}$) and $\Delta t_\text{min}$ is the minimum interval of time between 2 pictures ($ = \SI{2.5e-3}{\second}$).}
 
 where $\Delta t_\text{max}$ and $\Delta t_\text{min}$ are respectively the maximum and the minimum interval of time between two images.
 
@@ -360,7 +361,7 @@ Using the fit results for $A(q)$ and $B(q)$, we obtain the ISF (FIG. \ref{ISF}.a
 When plotting $\tau_\text{d}(q)$ as a function of $q$ (FIG. \ref{FitDiffColl}.a), 3 regimes are visible:
 
 \begin{itemize}
-\item[\textbf{(1)}] The radial average is perform on very few points (1 point for $q = q_\text{min}$ which correspond to the center of the Fourier transforms). We are also limited to duration of the experiment, $\unit{1000}{\second}$.
+\item[\textbf{(1)}] The radial average is perform on very few points (1 point for $q = q_\text{min}$ which correspond to the center of the Fourier transforms). We are also limited to duration of the experiment, $\SI{1000}{\second}$.
 \item[\textbf{(3)}] The signal-to-noise ratio is too high.
 \item[\textbf{(2)}] Statistics are good and the signal-to-noise ratio is low enough.
 \end{itemize}
@@ -370,7 +371,7 @@ Given the diffusive origin of $\tau_\text{d}$, we have fitted $\log(\tau_\text{d
 
 
 
-The theoretical model is in a very good agreement with our measurements and we obtain a diffusion coefficient of $D_\text{fit} = \unit{0.39}{\micro\meter\squared\per\second}$. Using the Stokes-Einstein formula with our experimental conditions $T = \unit{293}{\kelvin}$, $\eta = \unit{1}{\milli\pascal\cdot\second}$, $r = \unit{0.5}{\micro\meter}$, we obtain $D_\text{E} = \unit{0.41}{\micro\meter\squared\per\second}$ which implies an error of only $\sim 4.9 \%$. The range of $q$ on which we are able to fit $\tau_\text{d}$ provide us an experimental value for the resolution of DDM. Indeed, as the relevant regime has a maximum of $q=\unit{3.5}{\micro\reciprocal\meter}$, we obtain a resolution of $\frac{2\pi}{3.5} = \unit{1.8}{\micro\meter}$. Comparing to the microscope resolution $d = \frac{\lambda}{2 N.A.} \sim \unit{1}{\micro\meter}$, it means that the resolution of the microscope is not the limiting factor for the resolution of the DDM.
+The theoretical model is in a very good agreement with our measurements and we obtain a diffusion coefficient of $D_\text{fit} = \SI{0.39}{\micro\meter\squared\per\second}$. Using the Stokes-Einstein formula with our experimental conditions $T = \SI{293}{\kelvin}$, $\eta = \SI{1}{\milli\pascal\second}$, $r = \SI{0.5}{\micro\meter}$, we obtain $D_\text{E} = \SI{0.41}{\micro\meter\squared\per\second}$ which implies an error of only $\sim 4.9 \%$. The range of $q$ on which we are able to fit $\tau_\text{d}$ provide us an experimental value for the resolution of DDM. Indeed, as the relevant regime has a maximum of $q=\SI{3.5}{\per\micro\meter}$, we obtain a resolution of $\frac{2\pi}{3.5} = \SI{1.8}{\micro\meter}$. Comparing to the microscope resolution $d = \frac{\lambda}{2 N.A.} \sim \SI{1}{\micro\meter}$, it means that the resolution of the microscope is not the limiting factor for the resolution of the DDM.
 
 We also have access to informations about the parameters $A(q)$ and $B(q)$ (FIG. \ref{FitDiffColl}.b). According to our data, the noise floor $B(q)$ seems constant for every $q$: the camera is adding a white noise to each images. Also, it is possible to relate the parameter $A(q)$, \textcolor{red}{XXX} which is twice the autocorrelation of the studied system, to characteristics of the microscope \citep{3_DDM3D}. F.Giavazzi et al. has shown that it is related to the properties of the light source, the numerical aperture of the objective and the sample thickness.
 
@@ -395,9 +396,9 @@ We also have access to informations about the parameters $A(q)$ and $B(q)$ (FIG.
 \subsection{Bacteria}
 
 The swimming of bacteria has been first observed in the 17th century with light microscopy by Antony van Leeuwenhoek \citep{23_dobell1933antony}, those bacteria are now known as \textit{Spirillum volutans}. However, he couldn't explain how they were moving as he was not able to see their propellant, the flagella. Some years later, in 1836, the flagella has been discovered by Christian Ehrenberg and, also, in 1872 by Ferdinand Cohn \citep{24_gillen2007genesis}. Then, biologists tried to understand how the bacteria was adapting the motion of their flagella to move in one given direction.
-Nowadays, we know that the flagellum of bacteria is made of a set of multiple biological reversible rotary motors, a long helical filament, which serve as a propeller, and a coupler between the motors and the filament \citep{25_delalez2001bacterial}. The global motion of the bacteria can be split into two phases. The motors can run clockwise and independently, causing the bacteria to move erratically. The bacteria is said to "tumble". The motors can also run counter-clockwise but with the filaments rotating in parallel. Then the bacteria move forward and is said to "run". A mean tumble has an average time of $\unit{0.1}{\second}$ and a run has an average time of $\unit{1}{\second}$ \citep{5_berg2000motile}. They are both exponentially distributed. The direction taken after a tumble is approximately random but there is a small bias due to the fact that bacteria are preferably moving toward a more nutritive medium. They chose their direction by comparing the variation of concentration over time \citep{26_mitchell2006bacterial}.
+Nowadays, we know that the flagellum of bacteria is made of a set of multiple biological reversible rotary motors, a long helical filament, which serve as a propeller, and a coupler between the motors and the filament \citep{25_delalez2001bacterial}. The global motion of the bacteria can be split into two phases. The motors can run clockwise and independently, causing the bacteria to move erratically. The bacteria is said to "tumble". The motors can also run counter-clockwise but with the filaments rotating in parallel. Then the bacteria move forward and is said to "run". A mean tumble has an average time of $\SI{0.1}{\second}$ and a run has an average time of $\SI{1}{\second}$ \citep{5_berg2000motile}. They are both exponentially distributed. The direction taken after a tumble is approximately random but there is a small bias due to the fact that bacteria are preferably moving toward a more nutritive medium. They chose their direction by comparing the variation of concentration over time \citep{26_mitchell2006bacterial}.
 
-Bacteria are a more complex particle than colloids as they can propel themselves and undergo the phenomenon of "run" and "tumble". With the same algorithm used with the Brownian particles, we will study the global motion of bacteria and see that, by adapting the ISF, it is possible to obtain other quantitative informations about those new particles \citep{4_Martinez20121637} such as their mean speed and the rate of motile bacteria. We chose a specie of bacteria called \textit{Salmonella}. It has the shape of a rod with a length of $\unit{2}{\micro\meter}$ and a diameter of around $\unit{1}{\micro\meter}$. We chose this species of bacteria because, within the set of bacteria species we have tested, they displayed the highest motility ratio.
+Bacteria are a more complex particle than colloids as they can propel themselves and undergo the phenomenon of "run" and "tumble". With the same algorithm used with the Brownian particles, we will study the global motion of bacteria and see that, by adapting the ISF, it is possible to obtain other quantitative informations about those new particles \citep{4_Martinez20121637} such as their mean speed and the rate of motile bacteria. We chose a specie of bacteria called \textit{Salmonella}. It has the shape of a rod with a length of $\SI{2}{\micro\meter}$ and a diameter of around $\SI{1}{\micro\meter}$. We chose this species of bacteria because, within the set of bacteria species we have tested, they displayed the highest motility ratio.
 
 \subsection{Results}
 
@@ -437,15 +438,15 @@ With $\tau_\text{r} = 1/(\overline{v}q)$ the characteristic run time of bacteria
 \begin{array}{rcl}
 A_0 &=& \langle \, |\widehat{\Delta I}|^2 \, \rangle (q,\Delta t_\text{max}) - \langle \, |\widehat{\Delta I}|^2 \, \rangle (q,\Delta t_\text{min}) \\
 B_0 &=& \langle \, |\widehat{\Delta I}|^2 \, \rangle (q,\Delta t_\text{min}) \\
-\tau_\text{d0} &=& \unit{1}{\second}\\
+\tau_\text{d0} &=& \SI{1}{\second}\\
 \alpha_0 &=& 0.5\\
-\tau_\text{r0} &=& \frac{1}{10 \cdot q}\\
+\tau_\text{r0} &=& \frac{1}{10 q}\\
 Z_0 &=& 1
 \end{array}
 \right.
 \end{equation}
 
-The two diffusion phenomena can be observed on the plot of $f(q, \Delta t)$ (FIG. \ref{ISFBacteria}.a), for low $\Delta t$ ($< \unit{0.3}{\second}$), the decrease of correlation is due to the running motion of bacteria, Brownian motion is negligible. It is confirmed when we plot $f(q, \Delta t)$ as a function of $\tau_\text{r}^{-1} = \Delta t \, q$. We see that, in this case, the function doesn't depend on $q$ for low $\Delta t$ (FIG. \ref{ISFBacteria}.b). For larger $\Delta t$, the Brownian diffusion is dominant, so, when we plot $f(q, \Delta t)$ as a function of $\tau_\text{d}^{-1} = \Delta t \, q^2$, we can see a collapse of the curves (FIG. \ref{ISFBacteria}.c).
+The two diffusion phenomena can be observed on the plot of $f(q, \Delta t)$ (FIG. \ref{ISFBacteria}.a), for low $\Delta t$ ($< \SI{0.3}{\second}$), the decrease of correlation is due to the running motion of bacteria, Brownian motion is negligible. It is confirmed when we plot $f(q, \Delta t)$ as a function of $\tau_\text{r}^{-1} = \Delta t \, q$. We see that, in this case, the function doesn't depend on $q$ for low $\Delta t$ (FIG. \ref{ISFBacteria}.b). For larger $\Delta t$, the Brownian diffusion is dominant, so, when we plot $f(q, \Delta t)$ as a function of $\tau_\text{d}^{-1} = \Delta t \, q^2$, we can see a collapse of the curves (FIG. \ref{ISFBacteria}.c).
 
 \begin{figure}[H]
 	\begin{subfigure}[b]{\linewidth}
@@ -466,7 +467,7 @@ The two diffusion phenomena can be observed on the plot of $f(q, \Delta t)$ (FIG
 	\label{ISFBacteria}
 \end{figure}
 
-The fit provides the evolution of the rate of motile bacteria $\alpha$ with $q$. This value is supposed to be a constant of $q$. We can see that, on FIG. \ref{FitParametersBacteria}.a, in regime (1) $\alpha$ is increasing and in regime (3) $\alpha$ is decreasing, which means that our fit is not accurate is those 2 regimes. In regime (2), i.e. from $q = \unit{0.25}{\micro\reciprocal\meter}$ to $q = \unit{3.35}{\micro\reciprocal\meter}$, $\alpha$ is almost constant with an average value of $\overline{\alpha} = 65\%$. We used $\alpha$ as an estimator of the relevant ranging of $q$ on which we could fit our data. So, in the same ranging of $q$, we plot $\tau_\text{r}$ as a function of $q$ and we fit it in logarithm scale by a function of type $\log(\tau_\text{fitr}(q)) = -\log(q) - \log(\overline{v}_\text{fit})$ (FIG. \ref{ISFBacteria}.b). We can see that the model is correct in the studied ranging of $q$ thus giving $\overline{v} = \unit{21.6}{\micro\meter\per\second}$. The average value of $Z(q)$ given by the fit allows to plot the speed distribution of bacteria supposing that the Schulz distribution is a good model for the actual dynamic of speed of bacteria (FIG. \ref{ISFBacteria}.b). In the same ranging, we fitted the Brownian diffusion. We observe a slope of $-2$ as it is expected for Brownian diffusion. This fit provides a value of $D \sim \unit{0.17}{\micro\meter\squared\per\second}$. To compare this data, considering bacteria as sphere of diameter $2r$ equal to their length: $2r \sim \unit{3}{\micro\meter}$, we applied the \textsc{Stokes-Einstein} relation for a viscosity $\eta = \unit{1\cdot10^{-3}}{\milli\pascal\cdot\second}$ and a temperature $T=\unit{293}{\kelvin}$ and we got $D_\text{SE} = \unit{0.14}{\micro\meter\squared\per\second}$. As we see, the two methods give very similar results even though we are not considering the real shape of bacteria.
+The fit provides the evolution of the rate of motile bacteria $\alpha$ with $q$. This value is supposed to be a constant of $q$. We can see that, on FIG. \ref{FitParametersBacteria}.a, in regime (1) $\alpha$ is increasing and in regime (3) $\alpha$ is decreasing, which means that our fit is not accurate is those 2 regimes. In regime (2), i.e. from $q = \SI{0.25}{\per\micro\meter}$ to $q = \SI{3.35}{\per\micro\meter}$, $\alpha$ is almost constant with an average value of $\overline{\alpha} = 65\%$. We used $\alpha$ as an estimator of the relevant ranging of $q$ on which we could fit our data. So, in the same ranging of $q$, we plot $\tau_\text{r}$ as a function of $q$ and we fit it in logarithm scale by a function of type $\log(\tau_\text{fitr}(q)) = -\log(q) - \log(\overline{v}_\text{fit})$ (FIG. \ref{ISFBacteria}.b). We can see that the model is correct in the studied ranging of $q$ thus giving $\overline{v} = \SI{21.6}{\micro\meter\per\second}$. The average value of $Z(q)$ given by the fit allows to plot the speed distribution of bacteria supposing that the Schulz distribution is a good model for the actual dynamic of speed of bacteria (FIG. \ref{ISFBacteria}.b). In the same ranging, we fitted the Brownian diffusion. We observe a slope of $-2$ as it is expected for Brownian diffusion. This fit provides a value of $D \sim \SI{0.17}{\micro\meter\squared\per\second}$. To compare this data, considering bacteria as sphere of diameter $2r$ equal to their length: $2r \sim \SI{3}{\micro\meter}$, we applied the \textsc{Stokes-Einstein} relation for a viscosity $\eta = \SI{1}{\milli\pascal\second}$ and a temperature $T=\SI{293}{\kelvin}$ and we got $D_\text{SE} = \SI{0.14}{\micro\meter\squared\per\second}$. As we see, the two methods give very similar results even though we are not considering the real shape of bacteria.
 
 In our model we are not characterizing the "tumble" motion of bacteria. As it is also a diffusive phenomenon, it would be interesting to compare it to the Brownian motion to see at which time they are dominant. A theoretical model has been proposed by K. Martens et al. \cite{6_martens2012probability} to take account of tumble in the model of the ISF.
 
@@ -553,7 +554,7 @@ DDM is an alternative or a complement to particle tracking \citep{7_jaqaman2008r
 \begin{itemize}
 \item Its principle and setup is quite simple and relatively cheap.
 \item It has a high throughput allowing us to gather statistical information on hundreds of particles simultaneously on time scales ranging from the millisecond to the hour.
-\item It gathers informations on length scales ranging from $\unit{2}{\micro\meter}$ to $\unit{200}{\micro\meter}$.
+\item It gathers informations on length scales ranging from $\SI{2}{\micro\meter}$ to $\SI{200}{\micro\meter}$.
 \item Data analysis is quite fast which makes it a robust screening technique.
 \end{itemize}
 
