@@ -27,28 +27,22 @@ reprint,%
 %author-numerical,%
 ]{revtex4-1}
 
-\usepackage[pdftex]{graphicx}% Include figure files
-\usepackage{dcolumn}% Align table columns on decimal point
-\usepackage{bm}% bold math
-\usepackage{epstopdf}
-\usepackage{geometry}
-\usepackage{color}
-\usepackage{float}
-\usepackage{geometry}
-\usepackage{caption}
-\usepackage{subcaption}
-\usepackage{siunitx}
-\usepackage{colonequals}
-\usepackage{enumitem}
-\usepackage{amsmath}
+\usepackage{amsmath}  % needed for \tfrac, \bmatrix, etc.
+\usepackage{amsfonts} % needed for bold Greek, Fraktur, and blackboard bold
+\usepackage{graphicx} % needed for figures
+
+%\usepackage[pdftex]{graphicx}% Include figure files
 \usepackage{tabularx}
-\usepackage{array}
-\usepackage{caption}
+%\usepackage{bm}% bold math
+\usepackage{epstopdf}
+\usepackage{siunitx}
+\usepackage{xcolor}
+%\usepackage{booktabs}
 \epstopdfsetup{outdir=./epstopds_converted/}
 %\usepackage[mathlines]{lineno}% Enable numbering of text and display math
 %\linenumbers\relax % Commence numbering lines
 \newcommand*\circled[1]{\raisebox{0.5pt}{\textcircled{\raisebox{-.9pt} {#1}}}}
-\newcommand{\hh}{\\ \vspace{0.1cm} \\}
+%\newcommand{\hh}{\\ \vspace{0.1cm} \\}
 %\graphicspath{{D:/David/Figures/}}
 \graphicspath{{epstopds_converted}}
 
@@ -119,8 +113,7 @@ In section \ref{sec:BactSection}, we study the motion of \textit{Salmonella} bac
 For the microscope observations, the aqueous suspension of colloids or bacteria are enclosed in a hermetic microscope slide (FIG. \ref{Slide}). The  slide is composed of a  glass slide (\textsc{RS France}) and a cover slip (\textsc{Menszel-gl\"aser}) spaced by two lamellas of parafilm (\textsc{Bemis}).  The space between the glass slide and the cover slip is approximately $\SI{125}{\micro\meter}$.  The slide is then heated on a hotplate for 5 minutes to melt the parafilm thus sticking the cover slip and the glass slide together. A suspension of colloids or bacteria is then introduced into the enclosure by capillarity. Finally, the sample is sealed by application of glue (\textsc{Norland Products}) which hardens in contact of UV light ($\lambda = \SI{365}{\nano\meter}$).
 
 
-\begin{figure}[H]
-\centering
+\begin{figure}
 \includegraphics[width=\linewidth]{Colloides/ModifiedInkscape/Lamelle.eps}
 \caption{Skematics of the microscope slide used to study the motion of particles, namely, colloids and bacteria).}
 \label{Slide}
@@ -147,38 +140,26 @@ The Brownian motion is the unceasing and random motion of small particles in sus
 
 \subsection{Colloidal particles}
 
-To observe the Brownian motion of a particle in a Newtonian fluid, several conditions are required \citep{16_CollSusp}. The particle has to be colloidal, meaning that its size has to be far larger than the size of the molecule of the solvent, it is the case for the suspension we used (Table \ref{TabParams}). It is also needed to make sure that the thermal agitation is the physical process that dominate the dynamic of the colloidal particle. The optical slides being sealed and immobile, there is, \textit{a priori} no flow. Moreover, gravity has a negligible role. Indeed the P\'eclet number ($Pe_\text{g}$), the dimensionless number which characterize the ratio between thermal energy ($E_\text{th}$) responsible of the Brownian motion and the variation of potential energy for an altitude equal to the diameter of the particle responsible of the sedimentation ($E_\text{g}$), is large \citep{12_patankar1980numerical}. In our case:
+To observe the Brownian motion of a particle in a Newtonian fluid, several conditions are required \citep{16_CollSusp}. The particle has to be colloidal, meaning that its size has to be far larger than the size of the molecule of the solvent, it is the case for the suspension we used (Table \ref{TabParams}). Furthermore, colloidal particles have to be in dilute regime to avoid interaction between them. This is checked once the sample is made. As our colloids do not have long distance interaction, we estimate that the sample is dilute when the mean distance between colloids is higher than at least 10 times the diameter of a colloid. Finally, one has to make sure that the thermal agitation is the physical process that dominate the dynamic of the colloidal particle. We ensure that the solvent is not flowing by using an immobile, sealed and thin optical cell with negligible temperature gradient. The sedimentation motion can be characterized by the P\'eclet number \citep{12_patankar1980numerical}
+\begin{equation}
+\text{Pe}_g = \frac{E_g}{E_\text{th}},
+\end{equation}
+where $E_g = \frac{\pi d^3}{6}  (\rho_\text{c} - \rho_\text{s}) g  d$ is the variation of potential energy for a difference of altitude equal to the diameter $d$ of the particle, $E_\text{th} = k_\text{B} T$ is the thermal energy, $\rho_\text{c}$ and $\rho_\text{s}$ the respective densities of the particle and the surrounding solution, $g$ the acceleration of gravity, $k_\text{B}$ the Boltzmann constant and $T$ the temperature. Here $\text{Pe}_g \approx 0.1$, indicating that the sedimentation can be neglected over Brownian motion, at least when the particles have moved by less than a diameter during the acquisition time.
 
-\begin{eqnarray}
-E_\text{th} &=& k_\text{B} T\\ \nonumber
-&=& \SI{4.0e-21}{\joule} \\ \nonumber
-E_\text{g} &=& \frac{4}{3} \pi r^3 (\rho_\text{coll} - \rho_\text{solution}) g  2r \nonumber \\ \nonumber
-&=& \SI{3.1e-22}{\joule} \\ \nonumber
-\Rightarrow Pe_\text{g} &=& \frac{E_\text{th}}{E_\text{g}} \gg 1 \nonumber
-\end{eqnarray}
 
-With $\rho_\text{coll}$ the density of a colloid, $\rho_\text{solution}$ the density of the solution (mainly the same as water), $g$ the gravity constant of Earth, $k_\text{B}$ the Boltzmann constant and $T$ the temperature. Those 2 phenomena will be verified ``a posteriori". In presence of a flow the trajectory of the colloid, normally random, is biased in the direction of the flow. In presence of gravitational effects, the colloids sediment in the z-direction and the focus made with the microscope on the colloid is lost. Finally, colloidal particles have to be in dilute regime to avoid interaction between them. This is checked once the sample is made. As our colloids do not have long distance interaction, we estimate that the sample is dilute when the mean distance between colloids is higher than at least 10 times the diameter of a colloid.
+Absence of both flow and sedimentation will be verified \textit{a posteriori}. In presence of a flow the trajectory of the colloid, normally random, is biased in the direction of the flow. In presence of gravitational effects, the colloids sediment in the z-direction and the focus made with the microscope on the colloid is lost. 
 
-\begin{table}[H]
-\begin{tabular}{|m{0.7\linewidth}|m{0.28\linewidth}|}
-  \hline
-  \vspace{1mm}
-  Molecular diameter of water (H$_2$O) \citep{17_marcus1998properties}  & \vspace{2mm} $\SI{0.34}{\nano\meter}$ \vspace{1mm}  \\
-  \hline
-  \vspace{1mm}
-  Temperature $T$ of the suspension & \vspace{2mm} $\SI{20}{\degree C}$ \vspace{1mm} \\
-  \hline
-  \vspace{1mm}
- Tabulated viscosity of water at $T$ & \vspace{2mm} $\SI{1.002}{\milli\pascal\second}$ \vspace{1mm} \\
-  \hline
-  \vspace{1mm}
-  Density $\rho_\text{coll}$ of polystyrene & \vspace{2mm} $\SI{1.04}{\gram\per\centi\meter\cubed}$ \vspace{1mm} \\
-  \hline
-  \vspace{1mm}
- Colloid diameter $2r$ & \vspace{2mm} $\SI{1}{\micro\meter}$ \vspace{1mm} \\
+\begin{table}
+\begin{tabular}{m{0.7\linewidth}m{0.28\linewidth}}
+  \hline\\[-0.8em]
+  Molecular diameter of water \citep{17_marcus1998properties}  & $\SI{0.34}{\nano\meter}$\\
+  Temperature $T$ of the suspension & $\SI{20}{\degree C}$ \\
+  Tabulated viscosity of water at $T$ & $\SI{1.002}{\milli\pascal\second}$ \\
+  Density of polystyrene & $\SI{1.04}{\gram\per\centi\meter\cubed}$ \\
+  Colloid diameter $2r$ & $\SI{1}{\micro\meter}$\\
   \hline
   \end{tabular}
-  \captionof{table}{Properties of colloidal particles and their medium}
+  \caption{Properties of colloidal particles and their medium}
   \label{TabParams}
 \end{table}
 
@@ -193,16 +174,9 @@ The average position $\langle X(t) \rangle$ of a Brownian particle is not a good
 
 $d$ is the dimension of the space, $D$ is the diffusion coefficient. As predicted by theory, experiments shows that the mean square displacement scales linearly with time, Fig. \ref{BrownianTrajectory}.b.
 
-\begin{figure}[H]
-	\begin{subfigure}[b]{\linewidth}
-		\centering
-		\includegraphics[width=\linewidth]{Colloides/MatlabDirect/MouvementBrownien.eps}		
-	\end{subfigure}
-	\\
-	\begin{subfigure}[b]{\linewidth}
-		\centering
-		\includegraphics[width=\linewidth]{Colloides/MatlabDirect/MSDBrownian.eps}
-	\end{subfigure}
+\begin{figure}
+	\includegraphics[width=\linewidth]{Colloides/MatlabDirect/MouvementBrownien.eps}\\
+	\includegraphics[width=\linewidth]{Colloides/MatlabDirect/MSDBrownian.eps}
 	\caption{(a) Trajectory of a brownian particle obtained by particle tracking as a function of time. Positions of a colloid of diameter 1 $\mu$m in an aqueous suspension at various times from $t=0$ s (blue) to $t=2.5$ s (red). The time increment is $2.5 \times 10^{-3}$ s. (b) Mean Square Displacement of the colloid as a function of $t$ calculate from the trajectory in (a). }
 	\label{BrownianTrajectory}
 \end{figure}
@@ -221,8 +195,7 @@ Just as Dynamic Light Scattering (DLS) \citep{18_sartor2003dynamic}, the DDM yie
 To qualitatively get a feeling of the ISF, in FIG. \ref{SketchCorrelation}, we have superimposed two images of a colloidal dispersion separated by a lag time $\Delta t$. At $\Delta t = \SI{0.01}{\second}$, the colloids have barely moved and $f \simeq 1$. At $\Delta t = \SI{1}{\second}$, the colloids have moved and we can identity where they have come from.  At $\Delta t = \SI{100}{\second}$, the colloids have moved so much that we no longer know where they have come from and $f \simeq 0$: the 2 images are totally decorrelated.
 
 
-\begin{figure}[H]
-\centering
+\begin{figure}
 \includegraphics[width=\linewidth]{Colloides/ModifiedInkscape/ComparaisonImage.eps}
 \caption{Differential Dynamic Microscopy (DDM) principle. Superpositions of 2 images of a colloidal dispersion taken at various intervals of time and sketch of the correlation function. Each picture is composed of 2 images, the first one is colored in yellow and taken at $t = 0$ s, the other is colored in red and taken at $t = \Delta t$. \protect\circled{1}: $\Delta t = 0.01$ s; \protect\circled{2}: $\Delta t = 1$ s; \protect\circled{3}: $\Delta t = 100$ s. Correlation function between 2 sets of positions associated with each pictures. At low $\Delta t$, the 2 sets are very correlated \protect\circled{1} and the correlation function is 1. For $\Delta t \sim 1$ s, the correlation decrease \protect\circled{2}. For long $\Delta t$, the 2 sets are almost completely decorrelated \protect\circled{3} and the correlation function is 0.}
 \label{SketchCorrelation}
@@ -243,7 +216,7 @@ The ISF  is directly measured from $\hat{I}(\vec{q}, \, t)$ in DLS and from $\la
 \langle \, |\widehat{\Delta I}|^2 \, \rangle &=& \langle \, |\widehat{I}(\vec{q},t+\Delta t) - \widehat{I}(\vec{q},t)|^2 \, \rangle \\ \nonumber
 &=& \langle \, |\widehat{I}(\vec{q},t+ \Delta t)|^2 + |\widehat{I}(\vec{q},t)|^2 \\ \nonumber
 && \qquad \quad - 2 \, \widehat{I}^*(\vec{q},t+\Delta t) \widehat{I}(\vec{q},t) \, \rangle\\\nonumber
-&=& \underbrace{2F(\vec{q}, 0)}_{\colonequals \, A(\vec{q})} \bigg[ 1-\underbrace{\frac{F(\vec{q}, \Delta t)}{F(\vec{q}, 0)}}_{f(\vec{q}, \Delta t)} \bigg]\\\nonumber
+&=& \underbrace{2F(\vec{q}, 0)}_{\equiv A(\vec{q})} \bigg[ 1-\underbrace{\frac{F(\vec{q}, \Delta t)}{F(\vec{q}, 0)}}_{f(\vec{q}, \Delta t)} \bigg]\\\nonumber
 \end{eqnarray}
 
 The contribution of the noise due to the camera is taken into account by adding a supplementary term $B(\vec{q})$. $B(\vec{q})$ is decorrelated  at all time and therefore independent of $\Delta t$.
@@ -252,10 +225,11 @@ The contribution of the noise due to the camera is taken into account by adding 
 \langle \, |\widehat{\Delta I}|^2 \, \rangle = A(\vec{q})[1-f(\vec{q}, \Delta t)] + B(\vec{q})
 \end{eqnarray}
 
-The parameters $A(\vec{q})$ and $B(\vec{q})$ can be used as fitting parameters or measured independently thus giving access directly to the ISF. For both colloids and bacteria, the samples we study are both homogeneous and isotropic, which means that we don't lose information by studying $q \colonequals |\vec{q}| = \sqrt{q_x^2 + q_y ^2}$. To convert our pictures depending on $q_x$ and $q_y$ into a function depending on $q$, we realise a radial averages centred on the middle of the FFT image. The range of accessible $q$ depends on both the image and pixel size.
+The parameters $A(\vec{q})$ and $B(\vec{q})$ can be used as fitting parameters or measured independently thus giving access directly to the ISF. For both colloids and bacteria, the samples we study are both homogeneous and isotropic, which means that we don't lose information by studying $q \equiv |\vec{q}| = \sqrt{q_x^2 + q_y ^2}$. To convert our pictures depending on $q_x$ and $q_y$ into a function depending on $q$, we realise a radial averages centred on the middle of the FFT image. The range of accessible $q$ depends on both the image and pixel size.
 
 We note that the calculation time necessary to realize all the FFT of images at all the accessible $\Delta t$ can become very long (some hours). To \textcolor{red}{circonvint} this issue we sampled $\Delta t$ logarithmically with 10 points per decades.  Also, we didn't average over all the $|\widehat{\Delta I}|^2$ at constant $\Delta t$. We reduced the average on the first 100 differences of images which is sufficient to have isotropic Fourier transforms. With those optimizations, the calculation time fell to some minutes. We ran the DDM procedure on the both stacks of images at $\SI{400}{\hertz}$ and $\SI{4}{\hertz}$ independently. Then the we merged the two sets of data by multiplying each value of $|\widehat{\Delta I}|^2$ obtained at $\SI{4}{\hertz}$ so that $|\widehat{\Delta I}(q,\Delta t = \SI{0.25}{\second})|^2_{\SI{4}{\hertz}}$=$|\widehat{\Delta I}(q,\Delta t = \SI{0.25}{\second})|^2_{\SI{400}{\hertz}}$. Finally, we average the values of the curves at $\SI{4}{\hertz}$ and $\SI{400}{\hertz}$ in the overlap interval, from $\SI{0.25}{\second}$ to $\SI{10}{\second}$). We obtain $\langle \, |\widehat{\Delta I}|^2 \, \rangle (q, \Delta t)$ for $\Delta t$ from $\SI{2.5e-3}{\second}$ to $\SI{1000}{\second}$. The DDM procedure is summarized in Table \ref{AlgoTable}.
 
+\begin{table}
 \begin{tabular}{ |p{0.98\linewidth}| }
   \hline
   \\  
@@ -293,16 +267,16 @@ We note that the calculation time necessary to realize all the FFT of images at 
   \end{itemize}\\
   \hline
 \end{tabular}
-\captionof{table}{Steps of application of DDM}
+\caption{table}{Steps of application of DDM}
 \label{AlgoTable}
+\end{table}
 
 
 \subsection{Results}
 
 We first apply DDM on a suspension of colloids. In FIG. \ref{DifferenceAndFFT} we show $I(\vec{r}, \, t)- I(\vec{r}, \, t+\Delta t)$ for increasing value of $\Delta t$ and the corresponding power spectrum of each images. As $\Delta t$ increases, colloids move more and the difference between two images shows a growing signal on larger and larger length scale. \textcolor{red}{In FIG. \ref{D}.a, we have plotted the corresponding power spectrum.} The power spectrum is isotrope and as $\Delta t$ increases a peak appears at a wave vector which correspond to the most probable distance between two colloids. 
 
-\begin{figure}[H]
-\centering
+\begin{figure}
 \includegraphics[width=\linewidth]{Colloides/ModifiedInkscape/Diff_TF.eps}
 \caption{Image differences of a colloidal suspension and their Fourier transform as a function of $\Delta t$. (a, b, c) Differences between 2 images separated by $\Delta t$. (d, e, f) 2D Fourier transforms of those differences. These differences and Fourier transforms are calculated with $\Delta t = 0.01$ s (a, d), $\Delta t = 1$ s (b, e), $\Delta t = 100$ s (c, f). The unit of the Fourier transforms is arbitrary.}
 \label{DifferenceAndFFT}
@@ -311,17 +285,9 @@ We first apply DDM on a suspension of colloids. In FIG. \ref{DifferenceAndFFT} w
 
 in FIG. \ref{D}, $\widehat{\Delta I}(\vec{q}, \Delta t)$ is plotted as a function of $q$ and $\Delta t$. For small $\Delta t$ (FIG. \ref{D}.b), we observe a first plateau. Images are very correlated, colloids didn't move enough between 2 acquisitions separated by $\Delta t$ and the colloids motion is barely visible on the differences between the images. Thus, $f(\vec{q}, \, \Delta t) \simeq 1$,  we only observe the contribution of the noise $B(q)$. For large $\Delta t$, we observe a second plateau at a higher value because the images are completely decorrelated, $f(\vec{q}, \, \Delta t) \simeq 0 \rightarrow \langle \, |\widehat{\Delta I}|^2 \, \rangle (q, \, \Delta t) \simeq A(q)+B(q)$. The decorrelation appears faster when $q$ increases. Large $q$ correspond to small objects, considering a constant speed for objects at every scales, small objects decorrelate faster than big ones (corresponding to small $q$).
 
-\begin{figure}[H]
-\centering
-	\begin{subfigure}[b]{\linewidth}
-		\centering
-		\includegraphics[width=\linewidth]{Colloides/MatlabDirect/MoyenneRadialeSpline.eps}		
-	\end{subfigure}
-	\\
-	\begin{subfigure}[b]{\linewidth}
-		\centering
-		\includegraphics[width=\linewidth]{Colloides/MatlabDirect/Dexpe.eps}
-	\end{subfigure}
+\begin{figure}
+	\includegraphics[width=\linewidth]{Colloides/MatlabDirect/MoyenneRadialeSpline.eps}\\
+	\includegraphics[width=\linewidth]{Colloides/MatlabDirect/Dexpe.eps}
 	\caption{Evolution of the Fourier transforms $\langle \, |\widehat{\Delta I}|^2 \, \rangle (q, \Delta t)$ of the differences of images as a function of the the wave vector $q$ calculated at various $\Delta t$ (a) and as a function of $\Delta t$ calculated at various $q$ (b).}
 	\label{D}
 \end{figure}
@@ -344,16 +310,9 @@ where $\Delta t_\text{max}$ and $\Delta t_\text{min}$ are respectively the maxim
 
 Using the fit results for $A(q)$ and $B(q)$, we obtain the ISF (FIG. \ref{ISF}.a). It is possible to model $\tau_\text{d}$. For Brownian motion, $\tau_\text{d}$ is the characteristic time necessary for the colloid to travel a distance $L$. In real space, this results is $\tau_\text{d} = \frac{L^2}{D_\text{coll}}$ and in Fourier space, $\tau_\text{d} = \frac{1}{D_\text{coll} q^2}$ with $D_\text{coll}$ the diffusion coefficient due to Brownian motion for our colloids. By plotting $f(q, \Delta t)$ as a function of $\Delta t q^2$, we remove every dependence of the ISF on $q$ resulting into a collapse of the data on a master curve. (FIG. \ref{ISF}.b). 
 
-\begin{figure}[H]
-	\begin{subfigure}[b]{\linewidth}
-		\centering
-		\includegraphics[width=\linewidth]{Colloides/MatlabDirect/ISF+Fit_t.eps}		
-	\end{subfigure}
-	\\
-	\begin{subfigure}[b]{\linewidth}
-		\centering
-		\includegraphics[width=\linewidth]{Colloides/MatlabDirect/ISF+Fit_tq2.eps}
-	\end{subfigure}
+\begin{figure}
+	\includegraphics[width=\linewidth]{Colloides/MatlabDirect/ISF+Fit_t.eps}\\
+	\includegraphics[width=\linewidth]{Colloides/MatlabDirect/ISF+Fit_tq2.eps}
 	\caption{Intermediate scattering function (ISF) calculated at various $q$ versus $\Delta t$ (a) and $\Delta tq^2$ (b).}
 	\label{ISF}
 \end{figure}
@@ -375,17 +334,10 @@ The theoretical model is in a very good agreement with our measurements and we o
 
 We also have access to informations about the parameters $A(q)$ and $B(q)$ (FIG. \ref{FitDiffColl}.b). According to our data, the noise floor $B(q)$ seems constant for every $q$: the camera is adding a white noise to each images. Also, it is possible to relate the parameter $A(q)$, \textcolor{red}{XXX} which is twice the autocorrelation of the studied system, to characteristics of the microscope \citep{3_DDM3D}. F.Giavazzi et al. has shown that it is related to the properties of the light source, the numerical aperture of the objective and the sample thickness.
 
-\begin{figure}[H]
-	\hspace{-1.5mm}
-	\begin{subfigure}[b]{\linewidth}
-		\centering
-		\includegraphics[width=\linewidth]{Colloides/MatlabDirect/FitDiffusion.eps}		
-	\end{subfigure}
-	\\
-	\begin{subfigure}[b]{\linewidth}
-		\centering
-		\includegraphics[width=\linewidth]{Colloides/MatlabDirect/A+B+FitLOG.eps}
-	\end{subfigure}
+\begin{figure}
+	%\hspace{-1.5mm}
+	\includegraphics[width=\linewidth]{Colloides/MatlabDirect/FitDiffusion.eps}\\
+	\includegraphics[width=\linewidth]{Colloides/MatlabDirect/A+B+FitLOG.eps}
 	\caption{Caracteristic brownian diffusion time and fit parameters A(q), B(q).(a) Experimental data (\textcolor{blue}{$\circ$}) and fitted curve (\textcolor{red}{\textbf{---}}) of the caracteristic time for brownian diffusion $\tau_\text{d}$ versus $q$. (b) Fit parameters A(q) ($\ast$), B(q) (\textcolor{blue}{+}), and a model for A(q) (\textcolor{red}{- -}).}
 	\label{FitDiffColl}
 \end{figure}
@@ -448,21 +400,10 @@ Z_0 &=& 1
 
 The two diffusion phenomena can be observed on the plot of $f(q, \Delta t)$ (FIG. \ref{ISFBacteria}.a), for low $\Delta t$ ($< \SI{0.3}{\second}$), the decrease of correlation is due to the running motion of bacteria, Brownian motion is negligible. It is confirmed when we plot $f(q, \Delta t)$ as a function of $\tau_\text{r}^{-1} = \Delta t \, q$. We see that, in this case, the function doesn't depend on $q$ for low $\Delta t$ (FIG. \ref{ISFBacteria}.b). For larger $\Delta t$, the Brownian diffusion is dominant, so, when we plot $f(q, \Delta t)$ as a function of $\tau_\text{d}^{-1} = \Delta t \, q^2$, we can see a collapse of the curves (FIG. \ref{ISFBacteria}.c).
 
-\begin{figure}[H]
-	\begin{subfigure}[b]{\linewidth}
-		\centering
-		\includegraphics[width=\linewidth]{Bacteries/ISF+Fit_t_Bact.eps}		
-	\end{subfigure}
-	\\
-	\begin{subfigure}[b]{\linewidth}
-		\centering
-		\includegraphics[width=\linewidth]{Bacteries/ISF+Fit_tq_Bact.eps}
-	\end{subfigure}
-	\\
-	\begin{subfigure}[b]{\linewidth}
-		\centering
-		\includegraphics[width=\linewidth]{Bacteries/ISF+Fit_tq2_Bact.eps}
-	\end{subfigure}
+\begin{figure}
+	\includegraphics[width=\linewidth]{Bacteries/ISF+Fit_t_Bact.eps}\\
+	\includegraphics[width=\linewidth]{Bacteries/ISF+Fit_tq_Bact.eps}\\
+	\includegraphics[width=\linewidth]{Bacteries/ISF+Fit_tq2_Bact.eps}
 	\caption{Intermediate scattering function (ISF) calculated at various $q$ versus $\Delta t$ (a), $\Delta tq$ (b) and $\Delta tq^2$ (c).}
 	\label{ISFBacteria}
 \end{figure}
@@ -471,29 +412,11 @@ The fit provides the evolution of the rate of motile bacteria $\alpha$ with $q$.
 
 In our model we are not characterizing the "tumble" motion of bacteria. As it is also a diffusive phenomenon, it would be interesting to compare it to the Brownian motion to see at which time they are dominant. A theoretical model has been proposed by K. Martens et al. \cite{6_martens2012probability} to take account of tumble in the model of the ISF.
 
-\begin{figure}[H]
-	\begin{subfigure}[b]{\linewidth}
-		\centering
-		\includegraphics[width=\linewidth]{Bacteries/Alpha_Bact.eps}		
-	\end{subfigure}
-	\vspace{-0.3cm}
-	\\
-	\begin{subfigure}[b]{\linewidth}
-		\centering
-		\includegraphics[width=\linewidth]{Bacteries/FitVitesse_Bact.eps}
-	\end{subfigure}
-	\vspace{-0.2cm}
-	\\
-	\begin{subfigure}[b]{\linewidth}
-		\centering
-		\includegraphics[width=\linewidth]{Bacteries/FitDiffusion_Bact.eps}
-	\end{subfigure}
-	\\
-	\hspace{1cm}
-	\begin{subfigure}[b]{\linewidth}
-		\centering
-		\includegraphics[width=\linewidth]{Bacteries/A+B+Fit_bact.eps}
-	\end{subfigure}
+\begin{figure}
+	\includegraphics[width=\linewidth]{Bacteries/Alpha_Bact.eps}\\
+	\includegraphics[width=\linewidth]{Bacteries/FitVitesse_Bact.eps}\\
+	\includegraphics[width=\linewidth]{Bacteries/FitDiffusion_Bact.eps}\\
+	\includegraphics[width=\linewidth]{Bacteries/A+B+Fit_bact.eps}
 	\caption{Rate of motile bacteria, characteristic running and diffusive time, and fit parameters A(q), B(q).}
 	\label{FitParametersBacteria}
 \end{figure}
