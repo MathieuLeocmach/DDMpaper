@@ -37,6 +37,7 @@ reprint,%
 \usepackage{epstopdf}
 \usepackage{siunitx}
 \usepackage{xcolor}
+\usepackage{algpseudocode}
 %\usepackage{booktabs}
 \epstopdfsetup{outdir=./epstopds_converted/}
 %\usepackage[mathlines]{lineno}% Enable numbering of text and display math
@@ -169,7 +170,7 @@ Absence of both flow and sedimentation will be verified \textit{a posteriori}. I
 The average position $\langle X(t) \rangle$ of a Brownian particle is not a good parameter to characterize the Brownian motion. Indeed, as its motion is random with the same probability to move in any direction after a collision, $\langle X(t) \rangle \underset{t\to +\infty}{\longrightarrow} 0$ (FIG. \ref{BrownianTrajectory}.a). The mean square displacement \citep{11_ken2003molecular} $\langle X^2(t) \rangle$ is a much better parameter to computer from the trajectory of the colloid. By resolving the equation of diffusion for a density $\rho(\vec{X}, t)$ of Brownian particle, it can be shown that the second moment of $\rho(\vec{X}, t)$ is:
 
 \begin{equation}
-\langle X^2(t) \rangle = 2dDt
+\left\langle X^2(t) \right\rangle = 2dDt
 \end{equation}
 
 $d$ is the dimension of the space, $D$ is the diffusion coefficient. As predicted by theory, experiments shows that the mean square displacement scales linearly with time, Fig. \ref{BrownianTrajectory}.b.
@@ -203,31 +204,31 @@ To qualitatively get a feeling of the ISF, in FIG. \ref{SketchCorrelation}, we h
 
 The correlation function $F(\vec{q}, \, \Delta t)$ and the normalized correlation function $f(\vec{q}, \, \Delta t)$ are defined as \citep{19_goodman2005introduction} :
 
-\begin{eqnarray}
-F(\vec{q}, \, \Delta t) &=& \langle \ \hat{I}^*(\vec{q},\, t) \hat{I}(\vec{q},\, t+\Delta t) \ \rangle \\
-f(\vec{q}, \, \Delta t) &=& \frac{F(\vec{q}, \, \Delta t)}{F(\vec{q}, \, 0)}
-\end{eqnarray}
+\begin{align}
+F(\vec{q}, \, \Delta t) &= \left\langle \ \hat{I}^*(\vec{q},\, t) \hat{I}(\vec{q},\, t+\Delta t) \ \right\rangle \\
+f(\vec{q}, \, \Delta t) &= \frac{F(\vec{q}, \, \Delta t)}{F(\vec{q}, \, 0)}
+\end{align}
 
 where $\hat{I}(\vec{q}, \, t)$ is the scattered intensity in DLS and the fourier transform of the image ${I(\vec{r} \, t}$ in DDM; $\vec{q}$ is the scattering wave vector in DLS and the Fourier vector associated to vector position $\vec{r}$ in DDM. $\langle \cdot \rangle$ is the average over $t$.
 
 The ISF  is directly measured from $\hat{I}(\vec{q}, \, t)$ in DLS and from $\langle \, | \widehat{\Delta I}(\vec{q},\,\Delta t)|^2 \, \rangle$ with $\Delta I(\vec{q},\,\Delta t) = I(\vec{q},\, t+\Delta t) - I(\vec{q},\, t)$, in DDM:
 
-\begin{eqnarray}
-\langle \, |\widehat{\Delta I}|^2 \, \rangle &=& \langle \, |\widehat{I}(\vec{q},t+\Delta t) - \widehat{I}(\vec{q},t)|^2 \, \rangle \\ \nonumber
-&=& \langle \, |\widehat{I}(\vec{q},t+ \Delta t)|^2 + |\widehat{I}(\vec{q},t)|^2 \\ \nonumber
-&& \qquad \quad - 2 \, \widehat{I}^*(\vec{q},t+\Delta t) \widehat{I}(\vec{q},t) \, \rangle\\\nonumber
-&=& \underbrace{2F(\vec{q}, 0)}_{\equiv A(\vec{q})} \bigg[ 1-\underbrace{\frac{F(\vec{q}, \Delta t)}{F(\vec{q}, 0)}}_{f(\vec{q}, \Delta t)} \bigg]\\\nonumber
-\end{eqnarray}
+\begin{align*}
+\left\langle \, \left|\widehat{\Delta I}\right|^2 \, \right\rangle =& \left\langle \, \left|\widehat{I}(\vec{q},t+\Delta t) - \widehat{I}(\vec{q},t)\right|^2 \, \right\rangle \\
+=& \left\langle \, \left|\widehat{I}(\vec{q},t+ \Delta t)\right|^2 + \left|\widehat{I}(\vec{q},t)\right|^2\right. \\
+&\left.- 2 \, \widehat{I}^*(\vec{q},t+\Delta t) \widehat{I}(\vec{q},t) \, \right\rangle\\
+=& \underbrace{2F(\vec{q}, 0)}_{\equiv A(\vec{q})} \bigg[ 1-\underbrace{\frac{F(\vec{q}, \Delta t)}{F(\vec{q}, 0)}}_{f(\vec{q}, \Delta t)} \bigg]\\
+\end{align*}
 
 The contribution of the noise due to the camera is taken into account by adding a supplementary term $B(\vec{q})$. $B(\vec{q})$ is decorrelated  at all time and therefore independent of $\Delta t$.
 
 \begin{eqnarray}
-\langle \, |\widehat{\Delta I}|^2 \, \rangle = A(\vec{q})[1-f(\vec{q}, \Delta t)] + B(\vec{q})
+\left\langle \, \left|\widehat{\Delta I}\right|^2 \, \right\rangle = A(\vec{q})\left[1-f(\vec{q}, \Delta t)\right] + B(\vec{q})
 \end{eqnarray}
 
 The parameters $A(\vec{q})$ and $B(\vec{q})$ can be used as fitting parameters or measured independently thus giving access directly to the ISF. For both colloids and bacteria, the samples we study are both homogeneous and isotropic, which means that we don't lose information by studying $q \equiv |\vec{q}| = \sqrt{q_x^2 + q_y ^2}$. To convert our pictures depending on $q_x$ and $q_y$ into a function depending on $q$, we realise a radial averages centred on the middle of the FFT image. The range of accessible $q$ depends on both the image and pixel size.
 
-We note that the calculation time necessary to realize all the FFT of images at all the accessible $\Delta t$ can become very long (some hours). To \textcolor{red}{circonvint} this issue we sampled $\Delta t$ logarithmically with 10 points per decades.  Also, we didn't average over all the $|\widehat{\Delta I}|^2$ at constant $\Delta t$. We reduced the average on the first 100 differences of images which is sufficient to have isotropic Fourier transforms. With those optimizations, the calculation time fell to some minutes. We ran the DDM procedure on the both stacks of images at $\SI{400}{\hertz}$ and $\SI{4}{\hertz}$ independently. Then the we merged the two sets of data by multiplying each value of $|\widehat{\Delta I}|^2$ obtained at $\SI{4}{\hertz}$ so that $|\widehat{\Delta I}(q,\Delta t = \SI{0.25}{\second})|^2_{\SI{4}{\hertz}}$=$|\widehat{\Delta I}(q,\Delta t = \SI{0.25}{\second})|^2_{\SI{400}{\hertz}}$. Finally, we average the values of the curves at $\SI{4}{\hertz}$ and $\SI{400}{\hertz}$ in the overlap interval, from $\SI{0.25}{\second}$ to $\SI{10}{\second}$). We obtain $\langle \, |\widehat{\Delta I}|^2 \, \rangle (q, \Delta t)$ for $\Delta t$ from $\SI{2.5e-3}{\second}$ to $\SI{1000}{\second}$. The DDM procedure is summarized in Table \ref{AlgoTable}.
+We note that the calculation time necessary to realize all the FFT of images at all the accessible $\Delta t$ can become very long (some hours). To \textcolor{red}{circonvint} this issue we sampled $\Delta t$ logarithmically with 10 points per decades.  Also, we didn't average over all the $|\widehat{\Delta I}|^2$ at constant $\Delta t$. We reduced the average on the first 100 differences of images which is sufficient to have isotropic Fourier transforms. With those optimizations, the calculation time fell to some minutes. We ran the DDM procedure on the both stacks of images at $\SI{400}{\hertz}$ and $\SI{4}{\hertz}$ independently. Then the we merged the two sets of data by scaling the data at $\SI{4}{\hertz}$ so that both values at \SI{0.25}{\second} are equal. Finally, we average the values of the curves at $\SI{4}{\hertz}$ and $\SI{400}{\hertz}$ in the overlap interval, from $\SI{0.25}{\second}$ to $\SI{10}{\second}$). We obtain $\langle \, |\widehat{\Delta I}|^2 \, \rangle (q, \Delta t)$ for $\Delta t$ from $\SI{2.5e-3}{\second}$ to $\SI{1000}{\second}$. The DDM procedure is summarized in Table \ref{AlgoTable}.
 
 \begin{table}
 \begin{tabular}{ |p{0.98\linewidth}| }
@@ -244,26 +245,24 @@ We note that the calculation time necessary to realize all the FFT of images at 
   \\
   \hline
   \\
-  DDM algorithm:\\[2ex]
-  \hspace{0.3cm} for $\Delta t = 1/f \rightarrow t_\text{max}$ in log scale: \\[1ex]
-  \hspace{0.6cm} for $t = 0 \rightarrow \text{max}(t_\text{max}- \Delta t$ or $100)$: \\
-  \hspace{0.9cm} $\Delta I(\vec{x},t,\Delta t) = I(\vec{x},t+\Delta t) - I(\vec{x},t)$\\
-  \hspace{0.9cm} $|\widehat{\Delta I}(\vec{q},t,\Delta t)|^2 = |\text{FFT}[\Delta I(\vec{x},t,\Delta t)]|^2$\\
-  \hspace{0.6cm} end\\[1ex]
-  \hspace{0.6cm} Average on time $\rightarrow \langle \, |\widehat{\Delta I}|^2 \, \rangle (\vec{q}, \Delta t)$\\
-  \hspace{0.3cm} end\\[1ex]
-  \hspace{0.3cm} Radial average $\rightarrow \langle \, |\widehat{\Delta I}|^2 \, \rangle (q, \Delta t)$\\
-  \\
-  \hline\\
-  Fit of $\langle \, |\widehat{\Delta I}|^2 \, \rangle$:\\[2ex]
-  \hspace{0.3cm} $\langle \, \widehat{|\Delta I}|^2 \, \rangle (q, \Delta t) = A(q)(1-\underbrace{f(q, \Delta t)}_\text{ISF})+B(q)$ \\
+  DDM algorithm:
+  \begin{algorithmic}[0]
+  	\For{$\Delta t = 1/f \rightarrow t_\text{max}$ in log scale}
+  		\For{$t = 0 \rightarrow \text{max}(t_\text{max}- \Delta t$ or $100)$}
+  			\State $\Delta I(\vec{x},t,\Delta t) \gets I(\vec{x},t+\Delta t) - I(\vec{x},t)$
+  			\State $|\widehat{\Delta I}(\vec{q},t,\Delta t)|^2 \gets |\text{FFT}[\Delta I(\vec{x},t,\Delta t)]|^2$
+  		\EndFor
+  		\State $\left\langle |\widehat{\Delta I}|^2 \right\rangle (\vec{q}, \Delta t) \gets $ average on $t$
+  	\EndFor
+  	\State $\langle \, |\widehat{\Delta I}|^2 \, \rangle (q, \Delta t) \gets$ radial average 
+  \end{algorithmic}
   \\
   \hline\\
   Scales:
   \begin{itemize}
   \item $\SI{1}{px} = \SI{0.645}{\micro\meter}$
   \item $q_\text{min} = \frac{2 \pi}{0.645 \times 512} = \SI{1.9e-2}{\per\micro\meter}$
-  \item $q_\text{max} = \frac{2 \pi}{0.645 \times 512} 256 = \SI{4.9}{\per\micro\meter}$
+  \item $q_\text{max} = \frac{512}{2} q_\text{min} = \SI{4.9}{\per\micro\meter}$
   \end{itemize}\\
   \hline
 \end{tabular}
@@ -276,11 +275,11 @@ We note that the calculation time necessary to realize all the FFT of images at 
 
 We first apply DDM on a suspension of colloids. In FIG. \ref{DifferenceAndFFT} we show $I(\vec{r}, \, t)- I(\vec{r}, \, t+\Delta t)$ for increasing value of $\Delta t$ and the corresponding power spectrum of each images. As $\Delta t$ increases, colloids move more and the difference between two images shows a growing signal on larger and larger length scale. \textcolor{red}{In FIG. \ref{D}.a, we have plotted the corresponding power spectrum.} The power spectrum is isotrope and as $\Delta t$ increases a peak appears at a wave vector which correspond to the most probable distance between two colloids. 
 
-\begin{figure}
+\begin{figure*}
 \includegraphics[width=\linewidth]{Colloides/ModifiedInkscape/Diff_TF.eps}
 \caption{Image differences of a colloidal suspension and their Fourier transform as a function of $\Delta t$. (a, b, c) Differences between 2 images separated by $\Delta t$. (d, e, f) 2D Fourier transforms of those differences. These differences and Fourier transforms are calculated with $\Delta t = 0.01$ s (a, d), $\Delta t = 1$ s (b, e), $\Delta t = 100$ s (c, f). The unit of the Fourier transforms is arbitrary.}
 \label{DifferenceAndFFT}
-\end{figure}
+\end{figure*}
 
 
 in FIG. \ref{D}, $\widehat{\Delta I}(\vec{q}, \Delta t)$ is plotted as a function of $q$ and $\Delta t$. For small $\Delta t$ (FIG. \ref{D}.b), we observe a first plateau. Images are very correlated, colloids didn't move enough between 2 acquisitions separated by $\Delta t$ and the colloids motion is barely visible on the differences between the images. Thus, $f(\vec{q}, \, \Delta t) \simeq 1$,  we only observe the contribution of the noise $B(q)$. For large $\Delta t$, we observe a second plateau at a higher value because the images are completely decorrelated, $f(\vec{q}, \, \Delta t) \simeq 0 \rightarrow \langle \, |\widehat{\Delta I}|^2 \, \rangle (q, \, \Delta t) \simeq A(q)+B(q)$. The decorrelation appears faster when $q$ increases. Large $q$ correspond to small objects, considering a constant speed for objects at every scales, small objects decorrelate faster than big ones (corresponding to small $q$).
@@ -292,7 +291,7 @@ in FIG. \ref{D}, $\widehat{\Delta I}(\vec{q}, \Delta t)$ is plotted as a functio
 	\label{D}
 \end{figure}
 
-For a stochastic process such as the Brownian motion, the decrease of the correlation function is exponential : $ f(q, \, \Delta t) = \exp(-\frac{\Delta t}{\tau_\text{d}})$, with $\tau_\text{d}$ the characteristic time of the decay \citep{8_berne2000dynamic}. We fitted $\langle \, |\widehat{\Delta I}|^2 \, \rangle (q, \Delta t)$ as a function of $\Delta t$ for fixed $q$ and for each $q$. Our fit parameters are $A(q)$, $B(q)$ and $\tau_\text{d}(q)$. We fit the data in logarithmic scale in order not to attribute to much weight on points with high intensity. The initial parameters for the fit are:
+For a stochastic process such as the Brownian motion, the decrease of the correlation function is exponential : $ f(q, \, \Delta t) = \exp(-\Delta t/\tau_\text{d})$, with $\tau_\text{d}$ the characteristic time of the decay \citep{8_berne2000dynamic}. We fitted $\langle \, |\widehat{\Delta I}|^2 \, \rangle (q, \Delta t)$ as a function of $\Delta t$ for fixed $q$ and for each $q$. Our fit parameters are $A(q)$, $B(q)$ and $\tau_\text{d}(q)$. We fit the data in logarithmic scale in order not to attribute to much weight on points with high intensity. The initial parameters for the fit are:
 
 \begin{equation}
 \left\{
@@ -330,7 +329,7 @@ Given the diffusive origin of $\tau_\text{d}$, we have fitted $\log(\tau_\text{d
 
 
 
-The theoretical model is in a very good agreement with our measurements and we obtain a diffusion coefficient of $D_\text{fit} = \SI{0.39}{\micro\meter\squared\per\second}$. Using the Stokes-Einstein formula with our experimental conditions $T = \SI{293}{\kelvin}$, $\eta = \SI{1}{\milli\pascal\second}$, $r = \SI{0.5}{\micro\meter}$, we obtain $D_\text{E} = \SI{0.41}{\micro\meter\squared\per\second}$ which implies an error of only $\sim 4.9 \%$. The range of $q$ on which we are able to fit $\tau_\text{d}$ provide us an experimental value for the resolution of DDM. Indeed, as the relevant regime has a maximum of $q=\SI{3.5}{\per\micro\meter}$, we obtain a resolution of $\frac{2\pi}{3.5} = \SI{1.8}{\micro\meter}$. Comparing to the microscope resolution $d = \frac{\lambda}{2 N.A.} \sim \SI{1}{\micro\meter}$, it means that the resolution of the microscope is not the limiting factor for the resolution of the DDM.
+The theoretical model is in a very good agreement with our measurements and we obtain a diffusion coefficient of $D_\text{fit} = \SI{0.39}{\micro\meter\squared\per\second}$. Using the Stokes-Einstein formula with our experimental conditions $T = \SI{293}{\kelvin}$, $\eta = \SI{1}{\milli\pascal\second}$, $r = \SI{0.5}{\micro\meter}$, we obtain $D_\text{E} = \SI{0.41}{\micro\meter\squared\per\second}$ which implies an error of only $\sim 4.9 \%$. The range of $q$ on which we are able to fit $\tau_\text{d}$ provide us an experimental value for the resolution of DDM. Indeed, as the relevant regime has a maximum of $q=\SI{3.5}{\per\micro\meter}$, we obtain a resolution of $\frac{2\pi}{3.5} = \SI{1.8}{\micro\meter}$. Comparing to the microscope resolution $\frac{\lambda}{2 N.A.} \sim \SI{1}{\micro\meter}$, it means that the resolution of the microscope is not the limiting factor for the resolution of the DDM.
 
 We also have access to informations about the parameters $A(q)$ and $B(q)$ (FIG. \ref{FitDiffColl}.b). According to our data, the noise floor $B(q)$ seems constant for every $q$: the camera is adding a white noise to each images. Also, it is possible to relate the parameter $A(q)$, \textcolor{red}{XXX} which is twice the autocorrelation of the studied system, to characteristics of the microscope \citep{3_DDM3D}. F.Giavazzi et al. has shown that it is related to the properties of the light source, the numerical aperture of the objective and the sample thickness.
 
@@ -363,28 +362,27 @@ Bacteria move preferably where the concentration of nutriments is higher, causin
 \end{itemize}
 
 Considering these new conditions, it can be shown that an adequate ISF is \citep{1_BactMobil}:
+\begin{align}
+f(q, \Delta t) &= \exp\left(-\frac{\Delta t}{\tau_\text{d}}\right)
+\times\left[(1-\alpha) + \alpha \mathcal{P}(q, \Delta t)\right],\\
+\mathcal{P}(q, \Delta t) &= \int_{0}^{\infty} P(v)\, \text{sinc}(q\, v\, \Delta t) \mathrm{d}v,
+\end{align}
+with $\tau_\text{d} = 1/(Dq^2)$ the characteristic Brownian diffusion time, $\alpha$ the rate of motile bacteria. $\text{sinc}(q\, v\, \Delta t)$ is the ISF of an isotropic population of swimmers at speed $v$. The distribution of velocity $P(v)$ and the integral $\mathcal{P}(q, \Delta t)$ over $v$ take into account that the speed of bacteria can vary. 
 
+Following\citep{1_BactMobil} we chose a Schulz distribution for $P(v)$ which respects the apparent dynamic of bacteria, i.e. peaked around the average speed and going to 0 when $v \rightarrow \infty$:
 \begin{multline}
-f(q, \Delta t) = \exp\left(-\frac{\Delta t}{\tau_\text{d}}\right) \bigg[(1-\alpha)\\
-\left. + \alpha \int_{0}^{\infty} P(v)\, \text{sinc}(q\, v\, \Delta t) \mathrm{d}v \right]
+P(v) = \frac{v^Z}{Z!} \left(\frac{Z+1}{\overline{v}}\right)^{Z+1} \exp\left[-\frac{v(Z+1)}{\overline{v}}\right],
 \end{multline}
+with $\overline{v}$ the mean speed of bacteria.
 
-With $\tau_\text{d} = 1/(Dq^2)$ the characteristic Brownian diffusion time, $\alpha$ the rate of motile bacteria. $\text{sinc}(q\, v\, \Delta t)$ is the ISF of an isotropic population of swimmers at speed $v$. The distribution of velocity $P(v)$ and the integral over $v$ take into account that the speed of bacteria can vary. We chose a Schulz distribution for $P(v)$ which respects the apparent dynamic of bacteria (Picked around the average speed and tending to 0 when $v \rightarrow \infty$):
-
-\begin{multline}
-P(v) = \frac{v^Z}{Z!} \left(\frac{Z+1}{\overline{v}}\right)^{Z+1} \exp\left[-\frac{v(Z+1)}{\overline{v}}\right]
-\end{multline}
-
-With $\overline{v}$ the mean speed of bacteria.
 It is possible to formally calculate the integral over $v$:
-
 \begin{multline}
-\int_{0}^{\infty} P(v)\, \text{sinc}(q\, v\, \Delta t) \mathrm{d}v = \left(\frac{(Z+1)\tau_\text{r}}{Z \, \Delta t}\right) \\ \qquad \qquad \cdot \sin\left(Z\tan^{-1}\left(\frac{\Delta t}{(Z+1)\tau_\text{r}}\right)\right)\\
-\cdot \left(1+\left(\frac{\Delta t}{(Z+1)\tau_\text{r}}\right)^2\right)^{-Z/2}
+\mathcal{P}(q, \Delta t) = \frac{(Z+1)\tau_\text{r}}{Z \, \Delta t} \sin\left(Z\tan^{-1}\left(\frac{\Delta t}{(Z+1)\tau_\text{r}}\right)\right)\\
+\times \left(1+\left(\frac{\Delta t}{(Z+1)\tau_\text{r}}\right)^2\right)^{-Z/2},
 \end{multline}
+with $\tau_\text{r} = 1/(\overline{v}q)$ the characteristic run time of bacteria and $Z$ is a parameter related to the standard deviation $\sigma$ of the distribution : $Z = \left( \frac{\overline{v}}{\sigma} \right)^2 -1$. 
 
-With $\tau_\text{r} = 1/(\overline{v}q)$ the characteristic run time of bacteria and $Z$ is a parameter related to the standard deviation $\sigma$ of the distribution : $Z = \left( \frac{\overline{v}}{\sigma} \right)^2 -1$. We fitted $\langle \, |\widehat{\Delta I}|^2 \, \rangle (q, \Delta t)$ with the following initial parameters:
-
+We fitted $\langle \, |\widehat{\Delta I}|^2 \, \rangle (q, \Delta t)$ with the following initial parameters:
 \begin{equation}
 \left\{
 \begin{array}{rcl}
