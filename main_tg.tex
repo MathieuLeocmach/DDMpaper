@@ -126,11 +126,11 @@ For the microscope observations, the aqueous suspension of colloids or bacteria 
 
 \subsection{Microscope and acquisition parameters}
 
-The colloidal suspension is observed with light microscope (\textsc{nikon Eclipse Ti}) in visible light with an objective $10 \times$ of numerical aperture $N.A. = 0.3$. The focus is made in the middle of the microscope slide in z-direction. It allows to be far from the boundaries where colloids could be stuck on the slide and could not move in the 3 dimensions. Image are acquired with a camera (\textsc{Hamamatsu digital camera C11440}).
+The colloidal suspension is observed with light microscope (\textsc{nikon Eclipse Ti}) in transmitted visible light with an objective $10 \times$ of numerical aperture $N.A. = 0.3$. The focus is made in the middle of the microscope slide in z-direction. It allows to be far from the boundaries where colloids could be stuck on the slide and could not move in the 3 dimensions. Image are acquired with a camera (\textsc{Hamamatsu digital camera C11440}).
 
 The images are coded in $\SI{8}{bits}$  grey-scale: each pixel intensity is proportional to the incoming light intensity from the sample and varies linearly from  0 (black) to 255 (white). Using an exposure time of $\SI{1}{\milli\second}$, we adjusted the brightness of the microscope light in order to have a maximum number of pixel around a value of $\sim 120$ which minimize the amount of saturated pixels.
 
-The choice of the acquisitions parameters is a compromise between the spatial resolution and the temporal resolution. With the $10\times$ objective, a pixel correspond to $\SI{0.645}{\micro\meter}$, roughly the optical resolution of the microscope. Bacteria or colloids are about $\SI{1}{\micro\meter}$ and therefore correspond to a few pixels on the camera. We chose a $(\SI{512}{px})^2$ field of view which is large enough to capture the motion of 100 of bacteria and small enough to reach high acquisition frequencies, up to $\SI{400}{\hertz}$. However at $\SI{400}{\hertz}$ it is impossible to directly sent the data from the camera to the computer during the capture, so we chose to temporarily save the acquisition on the buffer of the camera during the capture, and, once it is over, we send the data from the buffer of the camera to the computer. The camera buffer memory limits the number of images in one stack to 4000. To be able to cover more time scales, we therefore chose to acquire a first stack of 4000 images at $\SI{400}{\hertz}$ and a second similar stack at $\SI{4}{\hertz}$. With this procedure, we cover time scales between $\SI{2.5e-3}{\second}$ and $\SI{1000}{\second}$ and length scales between $\SI{0.645}{\micro\meter}$ and $\SI{330}{\micro\meter}$.
+The choice of the acquisitions parameters is a compromise between the spatial resolution and the temporal resolution. With the $10\times$ objective, a pixel correspond to $\SI{0.645}{\micro\meter}$, roughly the optical resolution of the microscope. Bacteria or colloids are about $\SI{1}{\micro\meter}$ and therefore correspond to a few pixels on the camera. We chose a $(\SI{512}{px})^2$ field of view which is large enough to capture the motion of 100 of bacteria and small enough to reach high acquisition frequencies, up to $\SI{400}{\hertz}$. However at $\SI{400}{\hertz}$ it is impossible to directly sent the data from the camera to the computer during the capture, so we have to temporarily save the acquisition on the buffer of the camera during the capture, and, once it is over, we send the data from the buffer of the camera to the computer. The camera buffer memory limits the number of images in one stack to 4000. To be able to cover more time scales, we therefore chose to acquire a first stack of 4000 images at $\SI{400}{\hertz}$ and a second similar stack at $\SI{4}{\hertz}$. With this procedure, we cover time scales between $\SI{2.5e-3}{\second}$ and $\SI{1000}{\second}$ and length scales between $\SI{0.645}{\micro\meter}$ and $\SI{330}{\micro\meter}$.
 
 
 
@@ -139,7 +139,7 @@ The choice of the acquisitions parameters is a compromise between the spatial re
 
 \subsection{The Brownian motion}
 
-The Brownian motion is the unceasing and random motion of small particles in suspension in a liquid at rest. Brownian motion has a particularly interesting history. It has been observed since the 18th century, and maybe even before. Robert Brown, a Scottish botanist from the beginning of the 19th century, who was interested in the action of pollen on plant reproduction, observed the irregular and unceasing motion of micrometric particles in the internal fluid of grain of pollen \citep{13_brown1828brief}. At the time, such microscopic agitation was seen as \textit{a priori} a vital phenomenon. Nevertheless, R. Brown showed that this phenomenon persist with inorganic particles, refuting the wrong concept based on living particles. It's only at the beginning of the 20th century that physicists could interpret and analyse the Brownian motion. \textcolor{red}{XXX?} What is particular with Brownian motion and has prevented every attempt of interpretation in the 19th century, is that this motion is perpetual, unlike other usual experiments where friction eventually stop the motion. Albert Einstein \citep{9_einstein1906theory}, William Sutherland \citep{14_sutherland1905lxxv}, Marian von Smoluchowski \citep{10_von1906kinetischen} and Paul Langevin \citep{15_Langevin} rely on the molecular assumption, the thermostatically-controlled fluid containing the Brownian particles is composed of molecules which size is far smaller than the Brownian particles. They demonstrated that it is the shocks between the molecules of the liquid and the Brownian particles that are at the origin of the Brownian motion. This assumption has been validated by the experiments made by Jean Perrin in 1928 \citep{22_perrin2014atomes}. With a microscope and photographs, the team of Jean Perrin reconstructed ``by hand" the trajectories of Brownian particles and deduced a correct measure of the Avogadro constant, validating the theory of Brownian motion.
+The Brownian motion is the unceasing and random motion of small particles suspended in a fluid at rest. Brownian motion has a particularly interesting history. It has been observed since the 18th century, and maybe even before. Robert Brown, a Scottish botanist from the beginning of the 19th century, who was interested in the action of pollen on plant reproduction, observed the irregular and unceasing motion of micrometric particles in the internal fluid of grain of pollen \citep{13_brown1828brief}. At the time, such microscopic agitation was seen as \textit{a priori} a biological phenomenon. Nevertheless, R. Brown showed that this phenomenon persist with inorganic particles, refuting the wrong concept based on living particles. It's only at the beginning of the 20th century that physicists could interpret and analyze the Brownian motion. \textcolor{red}{XXX?} What is particular with Brownian motion and has prevented every attempt of interpretation in the 19th century, is that this motion is perpetual, unlike other usual experiments where friction eventually stop the motion. Albert Einstein \citep{9_einstein1906theory}, William Sutherland \citep{14_sutherland1905lxxv}, Marian von Smoluchowski \citep{10_von1906kinetischen} and Paul Langevin \citep{15_Langevin} explained Brownian motion using the atomic hypothesis, i.e. that the fluid is not a continuous medium but is composed of individual molecules far smaller than the Brownian particles. They demonstrated that it is the shocks between the molecules of the liquid and the Brownian particles that are at the origin of the Brownian motion. This assumption has been validated by the experiments made by Jean Perrin in 1928 \citep{22_perrin2014atomes}. With a microscope and photographs, the team of Jean Perrin reconstructed ``by hand" the trajectories of Brownian particles and deduced a correct measure of the Avogadro constant, validating the theory of Brownian motion and therefore the atomic hypothesis.
 
 \subsection{Colloidal particles}
 
@@ -147,7 +147,7 @@ To observe the Brownian motion of a particle in a Newtonian fluid, several condi
 \begin{equation}
 \text{Pe}_g = \frac{E_g}{E_\text{th}},
 \end{equation}
-where $E_g = \frac{\pi d^3}{6}  (\rho_\text{c} - \rho_\text{s}) g  d$ is the variation of potential energy for a difference of altitude equal to the diameter $d$ of the particle, $E_\text{th} = k_\text{B} T$ is the thermal energy, $\rho_\text{c}$ and $\rho_\text{s}$ the respective densities of the particle and the surrounding solution, $g$ the acceleration of gravity, $k_\text{B}$ the Boltzmann constant and $T$ the temperature. Here $\text{Pe}_g \approx 0.1$, indicating that the sedimentation can be neglected over Brownian motion, at least when the particles have moved by less than a diameter during the acquisition time.
+where $E_g = \frac{\pi d^3}{6}  (\rho_\text{c} - \rho_\text{s}) g  d$ is the variation of potential energy for a difference of altitude equal to the diameter $d$ of the particle, $E_\text{th} = k_\text{B} T$ is the thermal energy, $\rho_\text{c}$ and $\rho_\text{s}$ the respective densities of the particle and the surrounding solution, $g$ the acceleration of gravity, $k_\text{B}$ the Boltzmann constant and $T$ the temperature. Here we have $\text{Pe}_g \approx 0.1$, indicating that the sedimentation can be neglected over Brownian motion, at least when the particles have moved by less than a diameter during the acquisition time.
 
 
 Absence of both flow and sedimentation will be verified \textit{a posteriori}. In presence of a flow the trajectory of the colloid, normally random, is biased in the direction of the flow. In presence of gravitational effects, the colloids sediment in the z-direction and the focus made with the microscope on the colloid is lost. 
@@ -169,13 +169,11 @@ Absence of both flow and sedimentation will be verified \textit{a posteriori}. I
 
 \subsection{Stokes-Einstein relation}
 
-The average position $\langle X(t) \rangle$ of a Brownian particle is not a good parameter to characterize the Brownian motion. Indeed, as its motion is random with the same probability to move in any direction after a collision, $\langle X(t) \rangle \underset{t\to +\infty}{\longrightarrow} 0$ (FIG. \ref{BrownianTrajectory}.a). The mean square displacement \citep{11_ken2003molecular} $\langle X^2(t) \rangle$ is a much better parameter to computer from the trajectory of the colloid. By resolving the equation of diffusion for a density $\rho(\vec{X}, t)$ of Brownian particle, it can be shown that the second moment of $\rho(\vec{X}, t)$ is:
-
+Since the Brownian motion is random with the same probability to move in any direction after a collision, the average position of a particle do not carry any physical formation. Instead the relevant parameter is the mean square displacement \citep{11_ken2003molecular} $\langle \Delta X^2(\Delta t) \rangle$. By resolving the equation of diffusion for a density $\rho(\vec{X}, t)$ of Brownian particle, it can be shown XXX that the second moment of $\rho(\vec{X}, t)$ is:
 \begin{equation}
-\left\langle X^2(t) \right\rangle = 2dDt
+\left\langle \Delta X^2(t) \right\rangle = 2dD \Delta t
 \end{equation}
-
-$d$ is the dimension of the space, $D$ is the diffusion coefficient. As predicted by theory, experiments shows that the mean square displacement scales linearly with time, Fig. \ref{BrownianTrajectory}.b.
+where $d$ is the dimension of the space and $D$ is the diffusion coefficient. As predicted by theory, our experimental the mean square displacement scales linearly with time, Fig. \ref{BrownianTrajectory}.b.
 
 \begin{figure}
 	\includegraphics[width=\linewidth]{Colloides/MatlabDirect/MouvementBrownien.eps}\\
@@ -185,7 +183,6 @@ $d$ is the dimension of the space, $D$ is the diffusion coefficient. As predicte
 \end{figure}
 
 $D$ is increasing with the temperature and decreasing with the radius $r$ of the particle and the viscosity $\eta$ of the fluid according to the \textsc{Stokes-Einstein} formula \citep{9_einstein1906theory}:
-
 \begin{equation}
 D = \frac{k_\text{B} T}{6 \pi \eta r}
 \end{equation}
@@ -193,9 +190,18 @@ D = \frac{k_\text{B} T}{6 \pi \eta r}
 
 \subsection{Differential Dynamics Microscopy}
 
-Just as Dynamic Light Scattering (DLS) \citep{18_sartor2003dynamic}, the DDM yields average informations about a sample dynamics in the Fourier space. In DLS we measure the intensity as a function of time scattered by the sample directly in the Fourier space whereas in  DDM, we numerically Fourier transforms the images of the sample as a function of time \citep{2_DDM}. In both cases, we obtain the intermediate scattering function (ISF), $f$, a correlation function. We can get quantitative informations about the dynamic of the sample either by scaling the correlation function or by fitting the correlation with a model.
+An other way to look at the dynamics of the system is to forget about individual trajectories but rather quantify the evolution of the system during the time interval $\Delta t$. Formally, we can define an auto-correlation function $f(\Delta t)$ whose value goes from 1 when the system has not changed ($t=0$) to 0 when the system has changed completely $(t\rightarrow\infty)$. In FIG. \ref{SketchCorrelation}, we have superimposed two images of a colloidal dispersion separated by a lag time $\Delta t$. At $\Delta t = \SI{0.01}{\second}$, the colloids have barely moved and $f \simeq 1$. At $\Delta t = \SI{1}{\second}$, the colloids have moved and we can identity where they have come from.  At $\Delta t = \SI{100}{\second}$, the colloids have moved so much that we no longer know where they have come from and $f \simeq 0$: the two images are totally decorrelated.
 
-To qualitatively get a feeling of the ISF, in FIG. \ref{SketchCorrelation}, we have superimposed two images of a colloidal dispersion separated by a lag time $\Delta t$. At $\Delta t = \SI{0.01}{\second}$, the colloids have barely moved and $f \simeq 1$. At $\Delta t = \SI{1}{\second}$, the colloids have moved and we can identity where they have come from.  At $\Delta t = \SI{100}{\second}$, the colloids have moved so much that we no longer know where they have come from and $f \simeq 0$: the 2 images are totally decorrelated.
+
+The auto-correlation function depends on the length scale: a smaller field of view will appear decorrelated faster. This is more readily expressed in Fourier space by the wavenumber $q$, so that we have $f(q, \Delta t)$.
+
+DDM is a way to obtain the auto-correlation function of the system
+
+Just as Dynamic Light Scattering (DLS) \citep{18_sartor2003dynamic}, the DDM yields average informations about a sample dynamics in the Fourier space. In DLS we measure the intensity as a function of time scattered by the sample directly in the Fourier space whereas in  DDM, we numerically Fourier transforms the images of the sample as a function of time \citep{2_DDM}. In both cases, we obtain the intermediate scattering function (ISF), $f$, a correlation function. We can get quantitative information about the dynamic of the sample either by scaling the correlation function or by fitting the correlation with a model.
+
+
+
+To qualitatively get a feeling of the ISF, 
 
 
 \begin{figure}
