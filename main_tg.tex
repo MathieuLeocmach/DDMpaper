@@ -169,6 +169,7 @@ Absence of both flow and sedimentation will be verified \textit{a posteriori}. I
 Since the Brownian motion is random with the same probability to move in any direction after a collision, the average position of a particle do not carry any physical formation. Instead the relevant parameter is the mean square displacement \citep{11_ken2003molecular} $\langle \Delta X^2(\Delta t) \rangle$. By resolving the equation of diffusion for a density $\rho(\vec{X}, t)$ of Brownian particle, it can be shown XXX that the second moment of $\rho(\vec{X}, t)$ is:
 \begin{equation}
 \left\langle \Delta X^2(t) \right\rangle = 2dD \Delta t
+\label{eq:msd}
 \end{equation}
 where $d$ is the dimension of the space and $D$ is the diffusion coefficient. As predicted by theory, our experimental the mean square displacement scales linearly with time, Fig. \ref{BrownianTrajectory}.b.
 
@@ -179,27 +180,9 @@ where $d$ is the dimension of the space and $D$ is the diffusion coefficient. As
 	\label{BrownianTrajectory}
 \end{figure}
 
-$D$ is increasing with the temperature and decreasing with the radius $r$ of the particle and the viscosity $\eta$ of the fluid according to the \textsc{Stokes-Einstein} formula \citep{9_einstein1906theory}:
-\begin{equation}
-D = \frac{k_\text{B} T}{6 \pi \eta r}
-\end{equation}
 
-
-\subsection{Differential Dynamics Microscopy}
 
 An other way to look at the dynamics of the system is to forget about individual trajectories but rather quantify the evolution of the system during the time interval $\Delta t$. Formally, we can define an auto-correlation function $f(\Delta t)$ whose value goes from 1 when the system has not changed ($t=0$) to 0 when the system has changed completely $(t\rightarrow\infty)$. In FIG. \ref{SketchCorrelation}, we have superimposed two images of a colloidal dispersion separated by a lag time $\Delta t$. At $\Delta t = \SI{0.01}{\second}$, the colloids have barely moved and $f \simeq 1$. At $\Delta t = \SI{1}{\second}$, the colloids have moved and we can identity where they have come from.  At $\Delta t = \SI{100}{\second}$, the colloids have moved so much that we no longer know where they have come from and $f \simeq 0$: the two images are totally decorrelated.
-
-
-The auto-correlation function depends on the length scale: a smaller field of view will appear decorrelated faster. This is more readily expressed in Fourier space by the wavenumber $q$, so that we have $f(q, \Delta t)$.
-
-DDM is a way to obtain the auto-correlation function of the system
-
-Just as Dynamic Light Scattering (DLS) \citep{18_sartor2003dynamic}, the DDM yields average informations about a sample dynamics in the Fourier space. In DLS we measure the intensity as a function of time scattered by the sample directly in the Fourier space whereas in  DDM, we numerically Fourier transforms the images of the sample as a function of time \citep{2_DDM}. In both cases, we obtain the intermediate scattering function (ISF), $f$, a correlation function. We can get quantitative information about the dynamic of the sample either by scaling the correlation function or by fitting the correlation with a model.
-
-
-
-To qualitatively get a feeling of the ISF, 
-
 
 \begin{figure}
 \includegraphics[width=\linewidth]{Colloides/ModifiedInkscape/ComparaisonImage.eps}
@@ -207,33 +190,63 @@ To qualitatively get a feeling of the ISF,
 \label{SketchCorrelation}
 \end{figure}
 
-The correlation function $F(\vec{q}, \, \Delta t)$ and the normalized correlation function $f(\vec{q}, \, \Delta t)$ are defined as \citep{19_goodman2005introduction} :
 
-\begin{align}
-F(\vec{q}, \, \Delta t) &= \left\langle \ \hat{I}^*(\vec{q},\, t) \hat{I}(\vec{q},\, t+\Delta t) \ \right\rangle \\
-f(\vec{q}, \, \Delta t) &= \frac{F(\vec{q}, \, \Delta t)}{F(\vec{q}, \, 0)}
-\end{align}
+The auto-correlation function depends on the length scale: a smaller field of view will appear decorrelated faster. This is more readily expressed in Fourier space by the wavenumber $q$, so that we have $f(q, \Delta t)$. Here we drop dependence on the orientation of the wavevector $\vec{q}$ since we are dealing only with isotropic systems. 
 
-where $\hat{I}(\vec{q}, \, t)$ is the scattered intensity in DLS and the fourier transform of the image ${I(\vec{r} \, t}$ in DDM; $\vec{q}$ is the scattering wave vector in DLS and the Fourier vector associated to vector position $\vec{r}$ in DDM. $\langle \cdot \rangle$ is the average over $t$.
+We can get quantitative information about the dynamic of the sample either by scaling the correlation function or by fitting the correlation with a model. For a stochastic process such as the Brownian motion, the decrease of the correlation function is exponential : $f(q, \, \Delta t) = \exp(-\Delta t/\tau_\text{d})$, with $\tau_\text{d}$ the characteristic time of the decay \citep{8_berne2000dynamic}. Equivalently to (Eq.~\ref{eq:msd}), time and space variables are related by
+\begin{equation}
+\tau_\text{d} = \frac{1}{Dq^2}.
+\label{eq:relax}
+\end{equation}
 
-The ISF  is directly measured from $\hat{I}(\vec{q}, \, t)$ in DLS and from $\langle \, | \widehat{\Delta I}(\vec{q},\,\Delta t)|^2 \, \rangle$ with $\Delta I(\vec{q},\,\Delta t) = I(\vec{q},\, t+\Delta t) - I(\vec{q},\, t)$, in DDM:
+The diffusion coefficient $D$, common to (Eq.~\ref{eq:msd}) and (Eq.~\ref{eq:relax}), is increasing with the temperature and decreasing with the radius $r$ of the particle and the viscosity $\eta$ of the fluid according to the \textsc{Stokes-Einstein} formula \citep{9_einstein1906theory}:
+\begin{equation}
+D = \frac{k_\text{B} T}{6 \pi \eta r}
+\end{equation}
 
+
+\subsection{Differential Dynamics Microscopy}
+
+Dynamic Light Scattering (DLS) and Differential Dynamics Microscopy (DDM) are two different ways to obtain the auto-correlation function of a system. In DLS we measure the intensity $\hat{I}$ scattered by the sample at a given angle, i.e at a given wavenumber $q$ in the Fourier space. Time autocorrelation of this signal yields the so called Intermediate Scattering Function (ISF)~\citep{19_goodman2005introduction} $F(q, \, \Delta t) = \left\langle \hat{I}^*(\vec{q}, t) \hat{I}(\vec{q}, t+\Delta t) \right\rangle$, where brackets denote the average over the initial time $t$ and the orientation of the wavevector $\vec{q}$. The ISF is normalized into $f$ by
+\begin{equation}
+f(q, \Delta t) = \frac{F(q, \Delta t)}{F(q, 0)}.
+\end{equation}
+
+
+
+In DDM, we acquire microscopy images in real space as $I(\vec{r}, t)$ and then digitally processed them to obtain $f(q, \Delta t)$ as follow. We consider the difference between two images separated by $\Delta t$,
+\begin{equation}
+\Delta I(\vec{r},\Delta t) = I(\vec{r}, t+\Delta t) - I(\vec{r}, t)
+\end{equation}
+and we compute numerically its spatial 2D Fourier transform $\widehat{\Delta I}$. Once ensemble averaged, the squared normed of this quantity is directly related to the correlation function:
 \begin{align*}
-\left\langle \, \left|\widehat{\Delta I}\right|^2 \, \right\rangle =& \left\langle \, \left|\widehat{I}(\vec{q},t+\Delta t) - \widehat{I}(\vec{q},t)\right|^2 \, \right\rangle \\
-=& \left\langle \, \left|\widehat{I}(\vec{q},t+ \Delta t)\right|^2 + \left|\widehat{I}(\vec{q},t)\right|^2\right. \\
-&\left.- 2 \, \widehat{I}^*(\vec{q},t+\Delta t) \widehat{I}(\vec{q},t) \, \right\rangle\\
-=& \underbrace{2F(\vec{q}, 0)}_{\equiv A(\vec{q})} \bigg[ 1-\underbrace{\frac{F(\vec{q}, \Delta t)}{F(\vec{q}, 0)}}_{f(\vec{q}, \Delta t)} \bigg]\\
+\mathcal{D}(q,\Delta t) \equiv& \left\langle \left|\widehat{\Delta I}\right|^2(\vec{q},t+\Delta t) \right\rangle\\
+ =& \left\langle \left|\widehat{I}(\vec{q},t+\Delta t) - \widehat{I}(\vec{q},t)\right|^2 \right\rangle \\
+=& \left\langle \left|\widehat{I}(\vec{q},t+ \Delta t)\right|^2 + \left|\widehat{I}(\vec{q},t)\right|^2\right. \\
+&\left.- 2 \, \widehat{I}^*(\vec{q},t+\Delta t) \widehat{I}(\vec{q},t) \right\rangle\\
+=& \underbrace{2F(q, 0)}_{\equiv A(q)} \bigg[ 1-\underbrace{\frac{F(q, \Delta t)}{F(q, 0)}}_{f(q, \Delta t)} \bigg]\\
 \end{align*}
 
-The contribution of the noise due to the camera is taken into account by adding a supplementary term $B(\vec{q})$. $B(\vec{q})$ is decorrelated  at all time and therefore independent of $\Delta t$.
+The contribution of the noise due to the camera is taken into account by adding a supplementary term $B(q)$. $B(q)$ is decorrelated  at all time and therefore independent of $\Delta t$.
 
-\begin{eqnarray}
-\left\langle \, \left|\widehat{\Delta I}\right|^2 \, \right\rangle = A(\vec{q})\left[1-f(\vec{q}, \Delta t)\right] + B(\vec{q})
-\end{eqnarray}
+\begin{equation}
+\mathcal{D}(q,\Delta t) = A(q)\left[1-f(q, \Delta t)\right] + B(q)
+\label{eq:D2f}
+\end{equation}
 
-The parameters $A(\vec{q})$ and $B(\vec{q})$ can be used as fitting parameters or measured independently thus giving access directly to the ISF. For both colloids and bacteria, the samples we study are both homogeneous and isotropic, which means that we don't lose information by studying $q \equiv |\vec{q}| = \sqrt{q_x^2 + q_y ^2}$. To convert our pictures depending on $q_x$ and $q_y$ into a function depending on $q$, we realise a radial averages centred on the middle of the FFT image. The range of accessible $q$ depends on both the image and pixel size.
+The parameters $A(q)$ and $B(q)$ can be used as fitting parameters or measured independently thus giving access directly to the correlation function. The range of accessible $q$ depends on both the image size and the pixel size.
 
-We note that the calculation time necessary to realize all the FFT of images at all the accessible $\Delta t$ can become very long (some hours). To \textcolor{red}{circonvint} this issue we sampled $\Delta t$ logarithmically with 10 points per decades.  Also, we didn't average over all the $|\widehat{\Delta I}|^2$ at constant $\Delta t$. We reduced the average on the first 100 differences of images which is sufficient to have isotropic Fourier transforms. With those optimizations, the calculation time fell to some minutes. We ran the DDM procedure on the both stacks of images at $\SI{400}{\hertz}$ and $\SI{4}{\hertz}$ independently. Then the we merged the two sets of data by scaling the data at $\SI{4}{\hertz}$ so that both values at \SI{0.25}{\second} are equal. Finally, we average the values of the curves at $\SI{4}{\hertz}$ and $\SI{400}{\hertz}$ in the overlap interval, from $\SI{0.25}{\second}$ to $\SI{10}{\second}$). We obtain $\langle \, |\widehat{\Delta I}|^2 \, \rangle (q, \Delta t)$ for $\Delta t$ from $\SI{2.5e-3}{\second}$ to $\SI{1000}{\second}$. The DDM procedure is summarized in Table \ref{AlgoTable}.
+In FIG. \ref{DifferenceAndFFT} we show $I(\vec{r}, t)- I(\vec{r}, t+\Delta t)$ and the corresponding power spectrum for increasing value of $\Delta t$. As $\Delta t$ increases, colloids move more and the difference between two images shows a growing signal on larger and larger length scale. The power spectra are isotropic and as $\Delta t$ increases a peak appears at a wave vector which correspond to the most probable distance between two colloids.
+
+\begin{figure*}
+\includegraphics[width=\linewidth]{Colloides/ModifiedInkscape/Diff_TF.eps}
+\caption{Image differences of a colloidal suspension and their Fourier transform as a function of $\Delta t$. (a, b, c) Differences between 2 images separated by $\Delta t$. (d, e, f) 2D Fourier transforms of those differences. These differences and Fourier transforms are calculated with $\Delta t = 0.01$ s (a, d), $\Delta t = 1$ s (b, e), $\Delta t = 100$ s (c, f). The unit of the Fourier transforms is arbitrary.}
+\label{DifferenceAndFFT}
+\end{figure*}
+
+Implementations of Fast Fourier Tranform (FFT) algorithms are widespread and included in most high-level languages. However, we note that the calculation time necessary to compute all the FFT at all the accessible $\Delta t$ can become very long (some hours). To alleviate this burden, we sample $\Delta t$ logarithmically with 10 points per decades. Furthermore, for each $\Delta t$ we use at most 100 couples of images selected so that the initial times are XXX evenly spread across the accessible time window  Est-ce que c'est ce que tu as fais David ?XXX. This is sufficient to obtain isotropic Fourier spectra that we average radially. With those optimizations, the calculation time falls to a few minutes.
+
+We ran the DDM procedure on both stacks of images at $\SI{400}{\hertz}$ and $\SI{4}{\hertz}$ independently. Then the we merged the two sets of data by scaling the data at $\SI{4}{\hertz}$ so that both values at \SI{0.25}{\second} are equal. Finally, we average the values of the curves at $\SI{4}{\hertz}$ and $\SI{400}{\hertz}$ in the overlap interval, from $\SI{0.25}{\second}$ to $\SI{10}{\second}$). We obtain $\langle |\widehat{\Delta I}|^2 \rangle (q, \Delta t)$ for $\Delta t$ from $\SI{2.5e-3}{\second}$ to $\SI{1000}{\second}$. The DDM procedure is summarized in Table \ref{AlgoTable}.
 
 \begin{table}
 \begin{tabular}{ |p{0.98\linewidth}| }
@@ -253,7 +266,8 @@ We note that the calculation time necessary to realize all the FFT of images at 
   DDM algorithm:
   \begin{algorithmic}[0]
   	\For{$\Delta t = 1/f \rightarrow t_\text{max}$ in log scale}
-  		\For{$t = 0 \rightarrow \text{max}(t_\text{max}- \Delta t$ or $100)$}
+  		%\For{$t = 0 \rightarrow \text{max}(t_\text{max}- \Delta t$ or $100)$}
+  		\For{at most 100 values of $t\in[0, t_\text{max}- \Delta t]$}
   			\State $\Delta I(\vec{x},t,\Delta t) \gets I(\vec{x},t+\Delta t) - I(\vec{x},t)$
   			\State $|\widehat{\Delta I}(\vec{q},t,\Delta t)|^2 \gets |\text{FFT}[\Delta I(\vec{x},t,\Delta t)]|^2$
   		\EndFor
@@ -278,16 +292,7 @@ We note that the calculation time necessary to realize all the FFT of images at 
 
 \subsection{Results}
 
-We first apply DDM on a suspension of colloids. In FIG. \ref{DifferenceAndFFT} we show $I(\vec{r}, \, t)- I(\vec{r}, \, t+\Delta t)$ for increasing value of $\Delta t$ and the corresponding power spectrum of each images. As $\Delta t$ increases, colloids move more and the difference between two images shows a growing signal on larger and larger length scale. \textcolor{red}{In FIG. \ref{D}.a, we have plotted the corresponding power spectrum.} The power spectrum is isotrope and as $\Delta t$ increases a peak appears at a wave vector which correspond to the most probable distance between two colloids. 
-
-\begin{figure*}
-\includegraphics[width=\linewidth]{Colloides/ModifiedInkscape/Diff_TF.eps}
-\caption{Image differences of a colloidal suspension and their Fourier transform as a function of $\Delta t$. (a, b, c) Differences between 2 images separated by $\Delta t$. (d, e, f) 2D Fourier transforms of those differences. These differences and Fourier transforms are calculated with $\Delta t = 0.01$ s (a, d), $\Delta t = 1$ s (b, e), $\Delta t = 100$ s (c, f). The unit of the Fourier transforms is arbitrary.}
-\label{DifferenceAndFFT}
-\end{figure*}
-
-
-in FIG. \ref{D}, $\widehat{\Delta I}(\vec{q}, \Delta t)$ is plotted as a function of $q$ and $\Delta t$. For small $\Delta t$ (FIG. \ref{D}.b), we observe a first plateau. Images are very correlated, colloids didn't move enough between 2 acquisitions separated by $\Delta t$ and the colloids motion is barely visible on the differences between the images. Thus, $f(\vec{q}, \, \Delta t) \simeq 1$,  we only observe the contribution of the noise $B(q)$. For large $\Delta t$, we observe a second plateau at a higher value because the images are completely decorrelated, $f(\vec{q}, \, \Delta t) \simeq 0 \rightarrow \langle \, |\widehat{\Delta I}|^2 \, \rangle (q, \, \Delta t) \simeq A(q)+B(q)$. The decorrelation appears faster when $q$ increases. Large $q$ correspond to small objects, considering a constant velocity for objects at every scales, small objects decorrelate faster than big ones (corresponding to small $q$).
+In FIG. \ref{D}, $\mathcal{D}(q, \Delta t)$ is plotted either as a function of $q$ for various $\Delta t$ or as a function of $\Delta t$ for various $q$. For small $\Delta t$ (FIG. \ref{D}.b), we observe a first plateau. Images are very correlated, colloids didn't move enough between two images separated by $\Delta t$ and the colloids motion is barely visible on the differences between the images. Thus $f(q, \Delta t) \simeq 1$, and according to (Eq.~\ref{eq:D2f}) we only observe the contribution of the noise $B(q)$. For large $\Delta t$, we observe a second plateau at a higher value because the images are completely decorrelated, $f(q, \Delta t) \simeq 0$ thus $\mathcal{D}(q, \Delta t) \simeq A(q)+B(q)$.
 
 \begin{figure}
 	\includegraphics[width=\linewidth]{Colloides/MatlabDirect/MoyenneRadialeSpline.eps}\\
@@ -296,8 +301,7 @@ in FIG. \ref{D}, $\widehat{\Delta I}(\vec{q}, \Delta t)$ is plotted as a functio
 	\label{D}
 \end{figure}
 
-For a stochastic process such as the Brownian motion, the decrease of the correlation function is exponential : $ f(q, \, \Delta t) = \exp(-\Delta t/\tau_\text{d})$, with $\tau_\text{d}$ the characteristic time of the decay \citep{8_berne2000dynamic}. We fitted $\langle \, |\widehat{\Delta I}|^2 \, \rangle (q, \Delta t)$ as a function of $\Delta t$ for fixed $q$ and for each $q$. Our fit parameters are $A(q)$, $B(q)$ and $\tau_\text{d}(q)$. We fit the data in logarithmic scale in order not to attribute to much weight on points with high intensity. The initial parameters for the fit are:
-
+For each $q$ we fitted $\mathcal{D}(q, \Delta t)$ as a function of $\Delta t$. Our fit parameters are $A(q)$, $B(q)$ and $\tau_\text{d}(q)$. We fit the data in logarithmic scale in order not to attribute too much weight on points with high intensity. The initial parameters for the fit are:
 \begin{equation}
 \left\{
 \begin{array}{rcl}
@@ -307,12 +311,9 @@ B_0 &=& \langle \, |\widehat{\Delta I}|^2 \, \rangle (q,\Delta t_\text{min}) \\
 \end{array}
 \right.
 \end{equation}
-
-\textcolor{red}{where $\Delta t_\text{max}$ is the maximum interval of time between 2 images ($ = \SI{999.75}{\second}$) and $\Delta t_\text{min}$ is the minimum interval of time between 2 pictures ($ = \SI{2.5e-3}{\second}$).}
-
 where $\Delta t_\text{max}$ and $\Delta t_\text{min}$ are respectively the maximum and the minimum interval of time between two images.
 
-Using the fit results for $A(q)$ and $B(q)$, we obtain the ISF (FIG. \ref{ISF}.a). It is possible to model $\tau_\text{d}$. For Brownian motion, $\tau_\text{d}$ is the characteristic time necessary for the colloid to travel a distance $L$. In real space, this results is $\tau_\text{d} = \frac{L^2}{D_\text{coll}}$ and in Fourier space, $\tau_\text{d} = \frac{1}{D_\text{coll} q^2}$ with $D_\text{coll}$ the diffusion coefficient due to Brownian motion for our colloids. By plotting $f(q, \Delta t)$ as a function of $\Delta t q^2$, we remove every dependence of the ISF on $q$ resulting into a collapse of the data on a master curve. (FIG. \ref{ISF}.b). 
+Using the fit results for $A(q)$ and $B(q)$, we obtain the ISF (FIG. \ref{ISF}.a). According to (Eq.~\ref{eq:D2f}), by plotting $f(q, \Delta t)$ as a function of $\Delta t q^2$, we should remove every dependence of the ISF on $q$ resulting into a collapse of the data on a master curve. Indeed, this is what we observe on FIG. \ref{ISF}.b. 
 
 \begin{figure}
 	\includegraphics[width=\linewidth]{Colloides/MatlabDirect/ISF+Fit_t.eps}\\
