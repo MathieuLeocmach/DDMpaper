@@ -246,7 +246,7 @@ In FIG. \ref{DifferenceAndFFT} we show $I(\vec{r}, t)- I(\vec{r}, t+\Delta t)$ a
 
 Implementations of Fast Fourier Tranform (FFT) algorithms are widespread and included in most high-level languages. However, we note that the calculation time necessary to compute all the FFT at all the accessible $\Delta t$ can become very long (some hours). To alleviate this burden, we sample $\Delta t$ logarithmically with 10 points per decades. Furthermore, for each $\Delta t$ we use at most 100 couples of images selected so that the initial times are XXX evenly spread across the accessible time window  Est-ce que c'est ce que tu as fais David ?XXX. This is sufficient to obtain isotropic Fourier spectra that we average radially. With those optimizations, the calculation time falls to a few minutes.
 
-We ran the DDM procedure on both stacks of images at $\SI{400}{\hertz}$ and $\SI{4}{\hertz}$ independently. Then the we merged the two sets of data by scaling the data at $\SI{4}{\hertz}$ so that both values at \SI{0.25}{\second} are equal. Finally, we average the values of the curves at $\SI{4}{\hertz}$ and $\SI{400}{\hertz}$ in the overlap interval, from $\SI{0.25}{\second}$ to $\SI{10}{\second}$). We obtain $\langle |\widehat{\Delta I}|^2 \rangle (q, \Delta t)$ for $\Delta t$ from $\SI{2.5e-3}{\second}$ to $\SI{1000}{\second}$. The DDM procedure is summarized in Table \ref{AlgoTable}.
+We ran the DDM procedure on both stacks of images at $\SI{400}{\hertz}$ and $\SI{4}{\hertz}$ independently. Then the we merged the two sets of data by scaling the data at $\SI{4}{\hertz}$ so that both values at \SI{0.25}{\second} are equal. Finally, we average the values of the curves at $\SI{4}{\hertz}$ and $\SI{400}{\hertz}$ in the overlap interval, from $\SI{0.25}{\second}$ to $\SI{10}{\second}$). We obtain $\mathcal{D} (q, \Delta t)$ for $\Delta t$ from $\SI{2.5e-3}{\second}$ to $\SI{1000}{\second}$. The DDM procedure is summarized in Table \ref{AlgoTable}.
 
 \begin{table}
 \begin{tabular}{ |p{0.98\linewidth}| }
@@ -258,7 +258,7 @@ We ran the DDM procedure on both stacks of images at $\SI{400}{\hertz}$ and $\SI
   \item Acquisiton 1 : $f=\SI{400}{\hertz} \rightarrow t_\text{max} = \SI{10}{\second}$
   \item Acquisiton 2 : $f=\SI{4}{\hertz} \rightarrow t_\text{max} = \SI{1000}{\second}$
   \item Exposition time = $\SI{1}{\milli\second}$
-  \item Resolution of images = $512\times\SI{512}{px^2}$
+  \item Image size = $(\SI{512}{px})^2$
   \end{itemize}
   \\
   \hline
@@ -285,7 +285,7 @@ We ran the DDM procedure on both stacks of images at $\SI{400}{\hertz}$ and $\SI
   \end{itemize}\\
   \hline
 \end{tabular}
-\caption{table}{Steps of application of DDM}
+\caption{Steps of application of DDM}
 \label{AlgoTable}
 \end{table}
 
