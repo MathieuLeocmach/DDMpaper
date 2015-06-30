@@ -216,11 +216,11 @@ f(q, \Delta t) = \frac{F(q, \Delta t)}{F(q, 0)}.
 
 In DDM, we acquire microscopy images in real space as $I(\vec{r}, t)$ and then digitally processed them to obtain $f(q, \Delta t)$ as follow. We consider the difference between two images separated by $\Delta t$,
 \begin{equation}
-\Delta I(\vec{r},\Delta t) = I(\vec{r}, t+\Delta t) - I(\vec{r}, t)
+\Delta I(\vec{r},t, \Delta t) = I(\vec{r}, t+\Delta t) - I(\vec{r}, t)
 \end{equation}
 and we compute numerically its spatial 2D Fourier transform $\widehat{\Delta I}$. Once ensemble averaged, the squared normed of this quantity is directly related to the correlation function:
 \begin{align*}
-\mathcal{D}(q,\Delta t) \equiv& \left\langle \left|\widehat{\Delta I}\right|^2(\vec{q},t+\Delta t) \right\rangle\\
+\mathcal{D}(q,\Delta t) \equiv& \left\langle \left|\widehat{\Delta I}\right|^2 \right\rangle\\
  =& \left\langle \left|\widehat{I}(\vec{q},t+\Delta t) - \widehat{I}(\vec{q},t)\right|^2 \right\rangle \\
 =& \left\langle \left|\widehat{I}(\vec{q},t+ \Delta t)\right|^2 + \left|\widehat{I}(\vec{q},t)\right|^2\right. \\
 &\left.- 2 \, \widehat{I}^*(\vec{q},t+\Delta t) \widehat{I}(\vec{q},t) \right\rangle\\
@@ -322,22 +322,18 @@ Using the fit results for $A(q)$ and $B(q)$, we obtain the ISF (FIG. \ref{ISF}.a
 	\label{ISF}
 \end{figure}
 
-When plotting $\tau_\text{d}(q)$ as a function of $q$ (FIG. \ref{FitDiffColl}.a), 3 regimes are visible:
-
+When plotting the fitting parameters as a function of $q$ (FIG. \ref{FitDiffColl}), 3 regimes are visible:
 \begin{itemize}
-\item[\textbf{(1)}] The radial average is perform on very few points (1 point for $q = q_\text{min}$ which correspond to the center of the Fourier transforms). We are also limited to duration of the experiment, $\SI{1000}{\second}$.
-\item[\textbf{(3)}] The signal-to-noise ratio is too high.
+\item[\textbf{(1)}] The radial average is perform on very few pixels (4 pixels for $q = q_\text{min}$ which correspond to the central cross of the Fourier transforms). We are also limited to duration of the experiment, $\SI{1000}{\second}$.
+\item[\textbf{(3)}] The value of $A(q)$ (signal) is too close to $B(q)$ (noise), to yield a consistent fit.
 \item[\textbf{(2)}] Statistics are good and the signal-to-noise ratio is low enough.
 \end{itemize}
 
+We fit the regime (2) of $\tau_\text{d}(q)$ according to (Eq.~\ref{eq:relax}), which corresponds in logarithmic scale to a straight line of slope -2 and of intercept $-\log(D)$, FIG. \ref{FitDiffColl}a. The theoretical model is in a very good agreement with our measurements and we obtain a diffusion coefficient of $D_\text{fit} = \SI{0.39}{\micro\meter\squared\per\second}$.
 
-Given the diffusive origin of $\tau_\text{d}$, we have fitted $\log(\tau_\text{d})$ as a function of $q$ in the regime (2) with a linear function in logarithmic scale : $\tau_\text{fit}(q) = -2\log(q) - \log(D_\text{fit})$. 
+Using the Stokes-Einstein formula with our experimental conditions $T = \SI{293}{\kelvin}$, $\eta = \SI{1}{\milli\pascal\second}$, $r = \SI{0.5}{\micro\meter}$, we obtain $D_\text{E} = \SI{0.41}{\micro\meter\squared\per\second}$ which implies an error of only $\sim 4.9 \%$. The range of $q$ on which we are able to fit $\tau_\text{d}$ provide us an experimental value for the resolution of DDM. Indeed, as the relevant regime has a maximum of $q=\SI{3.5}{\per\micro\meter}$, we obtain a resolution of $\frac{2\pi}{3.5} = \SI{1.8}{\micro\meter}$. Comparing to the microscope resolution $\frac{\lambda}{2 N.A.} \sim \SI{1}{\micro\meter}$, it means that the resolution of the microscope is not the limiting factor for the resolution of the DDM.
 
-
-
-The theoretical model is in a very good agreement with our measurements and we obtain a diffusion coefficient of $D_\text{fit} = \SI{0.39}{\micro\meter\squared\per\second}$. Using the Stokes-Einstein formula with our experimental conditions $T = \SI{293}{\kelvin}$, $\eta = \SI{1}{\milli\pascal\second}$, $r = \SI{0.5}{\micro\meter}$, we obtain $D_\text{E} = \SI{0.41}{\micro\meter\squared\per\second}$ which implies an error of only $\sim 4.9 \%$. The range of $q$ on which we are able to fit $\tau_\text{d}$ provide us an experimental value for the resolution of DDM. Indeed, as the relevant regime has a maximum of $q=\SI{3.5}{\per\micro\meter}$, we obtain a resolution of $\frac{2\pi}{3.5} = \SI{1.8}{\micro\meter}$. Comparing to the microscope resolution $\frac{\lambda}{2 N.A.} \sim \SI{1}{\micro\meter}$, it means that the resolution of the microscope is not the limiting factor for the resolution of the DDM.
-
-We also have access to informations about the parameters $A(q)$ and $B(q)$ (FIG. \ref{FitDiffColl}.b). According to our data, the noise floor $B(q)$ seems constant for every $q$: the camera is adding a white noise to each images. Also, it is possible to relate the parameter $A(q)$, \textcolor{red}{XXX} which is twice the autocorrelation of the studied system, to characteristics of the microscope \citep{3_DDM3D}. F.Giavazzi et al. has shown that it is related to the properties of the light source, the numerical aperture of the objective and the sample thickness.
+We also have access to informations about the parameters $A(q)$ and $B(q)$ (FIG. \ref{FitDiffColl}.b). According to our data, the noise level $B(q)$ seems constant for every $q$: the camera is adding a white noise to each images. Also, it is possible to relate the parameter $A(q)$, \textcolor{red}{XXX} which is twice the autocorrelation of the studied system, to characteristics of the microscope \citep{3_DDM3D}. F.Giavazzi et al. have shown that it is related to the properties of the light source, the numerical aperture of the objective and the sample thickness.
 
 \begin{figure}
 	%\hspace{-1.5mm}
