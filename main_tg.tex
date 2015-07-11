@@ -361,14 +361,13 @@ Following Wilson et al.\cite{1_BactMobil}, we chose a Schulz distribution for $P
 \begin{multline}
 P(v) = \frac{v^Z}{Z!} \left(\frac{Z+1}{\overline{v}}\right)^{Z+1} \exp\left[-\frac{v(Z+1)}{\overline{v}}\right],
 \end{multline}
-with $\overline{v}$ the mean velocity of bacteria.
+with $\overline{v}$ the mean velocity of bacteria and $Z$ is a parameter related to the standard deviation $\sigma$ of the distribution : $Z = \left( \frac{\overline{v}}{\sigma} \right)^2 -1$. 
 
 It is then possible to formally calculate the integral over $v$:
-\begin{multline}
-\mathcal{P}(q, \Delta t) = \frac{(Z+1)\tau_\text{r}}{Z \, \Delta t} \sin\left(Z\tan^{-1}\left(\frac{\Delta t}{(Z+1)\tau_\text{r}}\right)\right)\\
-\times \left(1+\left(\frac{\Delta t}{(Z+1)\tau_\text{r}}\right)^2\right)^{Z/2},
-\end{multline}
-with $\tau_\text{r} = 1/(\overline{v}q)$ the characteristic run time of bacteria and $Z$ is a parameter related to the standard deviation $\sigma$ of the distribution : $Z = \left( \frac{\overline{v}}{\sigma} \right)^2 -1$. 
+\begin{equation}
+\mathcal{P}(q, \Delta t) = \frac{\sin\left(Z\tan^{-1}\theta\right)}{Z\theta\left(1+\theta^2\right)^{Z/2}},
+\end{equation}
+with $\theta = \Delta t/\left(\tau_r(Z+1)\right)$ and $\tau_\text{r} = 1/(\overline{v}q)$ the characteristic run time of bacteria.
 
 Fitting $\mathcal{D}(q, \Delta t)$ requires 6 parameters, even though the 2 decays are well separated in time, we have initialized the fit with values very close to the results so that the fit converges:
 \begin{equation}
@@ -377,8 +376,8 @@ Fitting $\mathcal{D}(q, \Delta t)$ requires 6 parameters, even though the 2 deca
 A_0 &=& \mathcal{D} (q,\Delta t_\text{max}) - \mathcal{D} (q,\Delta t_\text{min}) \\
 B_0 &=& \mathcal{D} (q,\Delta t_\text{min}) \\
 \tau_\text{d0} &=& 1/(0.1 q^{2})\\
-\alpha_0 &=& 0.5\\
 \tau_\text{r0} &=& 1/(10 q)\\
+\alpha_0 &=& 0.5\\
 Z_0 &=& 1
 \end{array}
 \right.
