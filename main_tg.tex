@@ -58,7 +58,7 @@ reprint,%
 
 \author{David Germain}
 \author{Mathieu Leocmach}
-\author{Thomas Gibaud}
+\author{Thomas Gibaud$^*$}
 \affiliation{Universit\'e de Lyon, Laboratoire de Physique, \'Ecole Normale Sup\'erieure de Lyon, CNRS UMR 5672, 46 All\'ee d'Italie, 69364 Lyon cedex 07, France}
 
 \date{\today}% It is always \today, today,
@@ -78,9 +78,9 @@ Quantifying the dynamics of a suspension of microscopic particles consists in me
 
 Quantifying the dynamics of a suspension of microscopic particles consists in measuring and analyzing the motion of those particles at the individual level or as a group. Like hockey for Canadians or cricket for Indians and Pakistanis, quantifying the dynamics of a suspension of microscopic particles is the national sport of a large community of researchers in physics and biology. For example, a century ago, Perrin has characterized the motion of small particles in a liquid, an experiment that evidenced the Brownian motion and firmly proved the existence of atoms \cite{22_perrin2014atomes}. More recently, the motion of tracer particles has been used to extract the mechanical properties such as viscosity or elasticity of fluids, gels\cite{Mason1997, Chen2010}, pastes, cell cytoplasm\cite{Fabry2001,Lau2003} and foods at scales unreachable by macroscopic techniques. In the past decade, the study of the collective motion of fish schools, bird flocks and bacteria swarms has lead to the emergence of a new field, active matter \cite{Bricard2013}.
 
-Video Particle Tracking (VPT) and Dynamic Light Scattering (DLS) are two of the most well-known techniques that allows to characterize the dynamics of a suspension of microscopic particles. VPT consists in tracking the position of an individual particle as a function of time to digitalize its trajectory. It provides precise information of small portions of a sample \citep{7_jaqaman2008robust}. DLS consists in shining a laser through the particle suspension and monitoring the fluctuations of scattered intensity as a function of time. It yields average information about the dynamics of a sample \citep{18_sartor2003dynamic}.
+Video Particle Tracking (VPT) and Dynamic Light Scattering (DLS) are two of the most well-known techniques that allows to characterize the dynamics of a suspension of microscopic particles. VPT consists in tracking the position of an individual particle as a function of time to digitalize its trajectory. It provides precise information of small portions of a sample \citep{Crocker1996}. DLS consists in shining a laser through the particle suspension and monitoring the fluctuations of scattered intensity as a function of time. It yields average information about the dynamics of a sample \citep{18_sartor2003dynamic}.
 
-Here, we describe an alternative method called Differential Dynamic Microscopy (DDM) recently proposed by Cerbino and Trappe \cite{2_DDM}. DDM is intuitive as it deals with real-space video of the moving objects like VPT, however it uses digital Fourier transform to obtain the same kind of information as DLS.  Contrary to tracking algorithm DDM algorithm is straightforward to implement at the programming level of most undergraduate students. We believe lab work on DDM is a great opportunity to become familiar with a microscope and with reciprocal units, the range of accessible wavenumbers and other nitty-gritty details necessary to tame the power of the Fourier transform. We have joined to this article movies of suspensions with different types of particles and the DDM codes so that the reader may reproduce the image analysis proper to DDM, see EPAPS.
+Here, we describe an alternative method called Differential Dynamic Microscopy (DDM) recently proposed by Cerbino and Trappe \cite{2_DDM}. DDM is intuitive as it deals with real-space video of the moving objects like VPT, however it uses digital Fourier transform to obtain the same kind of information as DLS.  Contrary to tracking algorithm DDM algorithm is straightforward to implement at the programming level of most undergraduate students. We believe lab work on DDM is a great opportunity to become familiar with a microscope and with reciprocal units, the range of accessible wavenumbers and other nitty-gritty details necessary to tame the power of the Fourier transform. We have joined to this article movies of suspensions with different types of particles and the DDM codes in Matlab and Python so that the reader may reproduce the image analysis proper to DDM, see EPAPS.
 
 In this article, we apply DDM to two sets of different micrometer particles, colloids at first, then motile bacteria. In section \ref{materials}, we present the materials and method we used to prepare the samples as well as the acquisition parameters. In section \ref{sec:BrownSection}, we use the Brownian motion of colloids as a support to present step by step DDM in a fully understood context. In a last part, section \ref{sec:BactSection}, we apply DDM to \textit{salmonella} bacteria and show that it is possible to characterize entangled dynamics where the bacteria both diffuse and ``swim".
 
@@ -111,7 +111,7 @@ The colloidal and bacterial suspensions are observed with light microscope (\tex
 
 The images are coded in $\SI{8}{bits}$  grey-scale: each pixel intensity is proportional to the incoming light intensity from the sample and varies linearly from  0 (black) to 255 (white). Using an exposure time of $\SI{1}{\milli\second}$, we adjusted the brightness of the microscope light in order to have a maximum number of pixel around a value of $\sim 120$ which minimize the amount of saturated pixels.
 
-The choice of the acquisitions parameters is a compromise between the spatial and the temporal resolution. With the $10\times$ objective, a pixel corresponds to $\SI{0.645}{\micro\meter}$, a bit smaller than the optical resolution of the microscope, $\lambda/(2N.A.)\approx\SI{0.8}{\micro\meter} $. Bacteria or colloids are about $\SI{1}{\micro\meter}$ and therefore correspond to a few pixels on the camera. We chose a $(\SI{512}{px})^2$ field of view which is large enough to capture the motion of 100 of particles and small enough to reach high acquisition frequencies, up to $\SI{400}{\hertz}$. At $\SI{400}{\hertz}$ it is impossible to directly sent the data from the camera to the computer during the capture, so we have to temporarily save the acquisition on the buffer of the camera, and, once it is over, we send the data from the buffer of the camera to the computer. The camera buffer memory limits the number of images in one stack to 4000. To cover a wide range of time scales, we chose to acquire a first stack of 4000 images at $\SI{400}{\hertz}$ and a second similar stack at $\SI{4}{\hertz}$. With this procedure, we cover time scales between $\SI{2.5e-3}{\second}$ and $\SI{1000}{\second}$ and length scales between $\SI{0.645}{\micro\meter}$ and $\SI{330}{\micro\meter}$.
+The choice of the acquisitions parameters is a compromise between the spatial and the temporal resolution. With the $10\times$ objective, a pixel corresponds to $dL=\SI{0.645}{\micro\meter}$, a bit smaller than the optical resolution of the microscope, $\lambda/(2N.A.)\approx\SI{0.8}{\micro\meter} $. Bacteria or colloids are about $\SI{1}{\micro\meter}$ and therefore correspond to a few pixels on the camera. We chose a $(\SI{512}{px})^2$ field of view which is large enough to capture the motion of 100 of particles and small enough to reach high acquisition frequencies, up to $\SI{400}{\hertz}$. At $\SI{400}{\hertz}$ it is impossible to directly send the data from the camera to the computer during the capture, so we have to temporarily save the acquisition on the buffer of the camera, and, once it is over, we send the data from the buffer of the camera to the computer. The camera buffer memory limits the number of images in one stack to 4000. To cover a wide range of time scales, we chose to acquire a first stack of 4000 images at $\SI{400}{\hertz}$ and a second similar stack at $\SI{4}{\hertz}$. With this procedure, we cover time scales between $\SI{2.5e-3}{\second}$ and $\SI{1000}{\second}$ and length scales between $dL=\SI{0.645}{\micro\meter}$ and $L=\SI{330}{\micro\meter}$. In Fourier space, the wave number increment, which also corresponds to the minimum wave number, is related to the image size, $dq=2\pi/L=\SI{0.019}{\micro\meter^{-1}}$. The maximum wave number is $q_{max}=2\pi/(2dL)=\SI{4.87}{\micro\meter^{-1}}$. Indeed according to the Nyquist–Shannon sampling theorem, the smallest wavelength measurable corresponds to a sinusoidal wave of period 2 pixels: 1 pixel for the positive part of sinusoidal wave and 1 pixel for the negative.
 
 \section{Brownian motion and DDM}
 \label{sec:BrownSection}
@@ -119,6 +119,7 @@ The choice of the acquisitions parameters is a compromise between the spatial an
 \subsection{The Brownian motion}
 
 The Brownian motion is the unceasing and random motion of small particles suspended in a fluid at rest. Brownian motion has a particularly interesting history. It has been observed since the 18th century, and maybe even before. Robert Brown, a Scottish botanist from the beginning of the 19th century, who was interested in the action of pollen on plant reproduction, observed the irregular and unceasing motion of micrometer particles in the internal fluid of grain of pollen \citep{13_brown1828brief}. At the time, such microscopic agitation was seen as \textit{a priori} a biological phenomenon. Nevertheless, R. Brown showed that this phenomenon persist with inorganic particles, refuting the wrong concept based on living particles. It's only at the beginning of the 20th century that physicists could interpret and analyze the Brownian motion. The particularity of the Brownian motion which has prevented every attempt of interpretation in the 19th century, is that the particle dynamics is perpetual, unlike other usual experiments where friction eventually stop the motion. Albert Einstein \citep{9_einstein1906theory}, William Sutherland \citep{14_sutherland1905lxxv}, Marian von Smoluchowski \citep{10_von1906kinetischen} and Paul Langevin \citep{15_Langevin} explained Brownian motion using the atomic hypothesis, i.e. that the fluid is not a continuous medium but is composed of individual molecules far smaller than the Brownian particles. They demonstrated that it is the shocks between the molecules of the liquid and the Brownian particles that are at the origin of the Brownian motion. This assumption has been validated by the experiments made by Jean Perrin in 1928 \citep{22_perrin2014atomes}. With a microscope and photographs, the team of Jean Perrin reconstructed ``by hand" the trajectories of Brownian particles and deduced a correct measure of the Avogadro constant, validating the theory of Brownian motion and therefore the atomic hypothesis.
+
 
 \subsection{Colloidal particles}
 
@@ -168,7 +169,7 @@ An other way to look at the dynamics of the system is to forget about individual
 \label{SketchCorrelation}
 \end{figure}
 
-The auto-correlation function depends on the length scale: a smaller field of view will appear decorrelated faster. This is more readily expressed in Fourier space by the wavenumber $q$, so that we have $f(q, \Delta t)$ for $\tau \sim 1$. This $q$ dependance of the auto-correlation function allows us to determine the physical origin of the decorrelation process. For balistic particles, the characteristic decorellation time $\tau$ necessary to advect a density is  proportional to the distance $2\pi/q$ whereas, for diffusive particles, the characteristic decorellation time $\tau$ necessary to diffuse a density is proportional to $(2\pi/q)^2$. Here we drop the dependence on the orientation of the wavevector $\vec{q}$ since we are dealing only with isotropic systems. 
+The auto-correlation function depends on the length scale: a smaller field of view will appear decorrelated faster. This is more readily expressed in Fourier space by the wavenumber $q$, so that we have $f(q, \Delta t)$ for $\tau \sim 1$. Here we drop the dependence on the orientation of the wavevector $\vec{q}$ since we are dealing only with isotropic systems. This $q$ dependance of the auto-correlation function allows us to determine the physical origin of the decorrelation process. For balistic particles, the characteristic decorellation time $\tau$ necessary to advect a density is  proportional to the distance $2\pi/q$ whereas, for diffusive particles, the characteristic decorellation time $\tau$ necessary to diffuse a density is proportional to $(2\pi/q)^2$. 
 
 We can get quantitative information about the dynamics of the sample either by scaling the correlation function or by fitting the correlation with a model. For a stochastic process such as the Brownian motion, the decrease of the correlation function is exponential : $f(q, \, \Delta t) = \exp(-\Delta t/\tau_\text{d})$, with $\tau_\text{d}$ the characteristic time of the decay \citep{8_berne2000dynamic}. Equivalently to (Eq.~\ref{eq:msd}), time and space variables are related by
 \begin{equation}
@@ -182,7 +183,7 @@ D = \frac{k_\text{B} T}{6 \pi \eta R}
 \end{equation}
 
 \subsection{Differential Dynamics Microscopy}
-
+\label{ddm}
 Dynamic Light Scattering (DLS) and Differential Dynamics Microscopy (DDM) are two different ways to obtain the auto-correlation function of a stationary system, that is to say a system whose statistical properties does not change when shifted in time. In DLS we measure the intensity $\hat{I}$ scattered by the sample at a given angle, i.e at a given wavenumber $q$ in the Fourier space. Time autocorrelation of this signal yields the so called Intermediate Scattering Function (ISF)~\citep{19_goodman2005introduction} $F(q, \, \Delta t) = \left\langle \hat{I}^*(\vec{q}, t) \hat{I}(\vec{q}, t+\Delta t) \right\rangle$, where brackets denote the average over the initial time $t$ and the orientation of the wavevector $\vec{q}$. The ISF is normalized into $f$ by
 \begin{equation}
 f(q, \Delta t) = \frac{F(q, \Delta t)}{F(q, 0)}.
@@ -219,7 +220,7 @@ In Fig.\ref{DifferenceAndFFT} we show $I(\vec{r}, t)- I(\vec{r}, t+\Delta t)$ an
 \label{DifferenceAndFFT}
 \end{figure*}
 
-Implementations of Fast Fourier Tranform (FFT) algorithms are widespread and included in most high-level languages. However, we note that the calculation time necessary to compute all the FFT at all the accessible $\Delta t$ can become very long (some hours). To alleviate this burden, we sample $\Delta t$ logarithmically with 10 points per decades. Furthermore, for each $\Delta t$ we use at most 100 couples of images selected so that the initial times are evenly spread across the accessible time window. This is sufficient to obtain isotropic Fourier spectra that we average radially. With those optimizations, the calculation time falls to a few minutes.
+Implementations of Fast Fourier Tranform (FFT) algorithms are widespread and included in most high-level languages. However, we note that the calculation time necessary to compute all the FFT at all the accessible $\Delta t$ can become very long (some hours). To alleviate this burden, we sample $\Delta t$ logarithmically with 10 points per decades. Furthermore, for each $\Delta t$ we use at most 300 couples of images selected so that the initial times are evenly spread across the accessible time window. This is sufficient to obtain isotropic Fourier spectra that we average radially. With those optimizations, the calculation time falls to a few minutes.
 
 We ran the DDM procedure on both stacks of images at $\SI{400}{\hertz}$ and $\SI{4}{\hertz}$ independently. Then the we merged the two sets of data by scaling the data at $\SI{4}{\hertz}$ so that both values at \SI{0.25}{\second} are equal. Finally, we average the values of the curves at $\SI{4}{\hertz}$ and $\SI{400}{\hertz}$ in the overlap interval, from $\SI{0.25}{\second}$ to $\SI{10}{\second}$. We obtain $\mathcal{D} (q, \Delta t)$ for $\Delta t$ from $\SI{2.5e-3}{\second}$ to $\SI{1000}{\second}$. The DDM procedure is summarized in Table \ref{AlgoTable}.
 
@@ -241,7 +242,7 @@ We ran the DDM procedure on both stacks of images at $\SI{400}{\hertz}$ and $\SI
   DDM algorithm:
   \begin{algorithmic}[0]
   	\For{$\Delta t = 1/f_{acq} \rightarrow t_\text{max}$ in log scale}
-  		\For{at most 100 values of $t\in[0, t_\text{max}- \Delta t]$}
+  		\For{at most 300 values of $t\in[0, t_\text{max}- \Delta t]$}
   			\State $\Delta I(\vec{x},t,\Delta t) \gets I(\vec{x},t+\Delta t) - I(\vec{x},t)$
   			\State $|\widehat{\Delta I}(\vec{q},t,\Delta t)|^2 \gets |\text{FFT}[\Delta I(\vec{x},t,\Delta t)]|^2$
   		\EndFor
@@ -275,6 +276,7 @@ We ran the DDM procedure on both stacks of images at $\SI{400}{\hertz}$ and $\SI
 \end{table}
 
 \subsection{Results}
+\label{resultcolloid}
 
 In Fig.\ref{D}, $\mathcal{D}(q, \Delta t)$ is plotted as a function of $q$ for various $\Delta t$ and as a function of $\Delta t$ for various $q$. For small $\Delta t$  as shown in Fig.\ref{D}.b, we observe a first plateau. Images are very correlated, colloids didn't move enough between two images separated by $\Delta t$ and the colloids motion is barely visible on the differences between the images. Thus $f(q, \Delta t) \simeq 1$, and according to (Eq.~\ref{eq:D2f}) we only observe the contribution of the noise $B(q)$. For large $\Delta t$, we observe a second plateau at a higher value because the images are completely decorrelated, $f(q, \Delta t) \simeq 0$ thus $\mathcal{D}(q, \Delta t) \simeq A(q)+B(q)$.
 
@@ -361,7 +363,7 @@ Following Wilson et al.\cite{1_BactMobil}, we chose a Schulz distribution for $P
 \begin{multline}
 P(v) = \frac{v^Z}{Z!} \left(\frac{Z+1}{\overline{v}}\right)^{Z+1} \exp\left[-\frac{v(Z+1)}{\overline{v}}\right],
 \end{multline}
-with $\overline{v}$ the mean velocity of bacteria and $Z$ is a parameter related to the standard deviation $\sigma$ of the distribution : $Z = \left( \frac{\overline{v}}{\sigma} \right)^2 -1$. 
+with $\overline{v}$ the mean velocity of bacteria and $Z$ is a parameter related to the standard deviation $\sigma$ of the distribution : $Z = \left( \frac{\overline{v}}{\sigma} \right)^2 -1$.
 
 It is then possible to formally calculate the integral over $v$:
 \begin{equation}
@@ -402,6 +404,31 @@ In the model and our experiment we are not characterizing tumble. On the experim
 	\label{FitParametersBacteria}
 \end{figure}
 
+
+
+\section{\label{didac}didactic considerations}
+We have tested this lab work of total duration 48h spread on 6 days with three pairs of students. On day 1, they learned to prepare colloidal sample, to use the microscope and camera, section \ref{materials}. We visualize their first movies with the user-friendly and free software  ImageJ. Based on those movies, we ask them various questions:
+\begin{itemize}
+\item describe the motion of colloids?
+\item what triggers this motion? We make the link with the concept of diffusion.
+\item what about gravity? Can you build a dimensionless number that characterize the competition between diffusion and gravity? 
+\end{itemize}
+Then we discuss different techniques to access dynamics of a colloidal dispersion, namely, particle tracking, DLS and DDM, section \ref{sec:BrownSection}. 
+
+On day 2, they start coding. We discuss with the students how to translate the principle of DDM into an algorithm, section \ref{ddm}. Then they start to code. To keep the code structured and readable for us we give them the signature of each function to code with predefined input and output. They are not supposed to be proficient in coding so we regularly check on them and debug with them. In this first version, the algorithm is not yet optimized: all the images are open, the $\Delta t$ is sampled linearly and we only test the code on 100s of images. In this way the students can feel that unoptimized  calculations are heavy and unpractical for longer movies. All along this process, we discuss the nitty-gritty of the Fourier transform, units conversion and the Nyquist–Shannon sampling theorem.
+
+On day 3, they optimize the code so that it can deal with a stack of 4000 images within $\sim$10 minutes. At this point we teach them how to produce scientific figures that well describe the different steps of the DDM algorithm. We finish by discussing the DDM resolution and limitation, section \ref{resultcolloid}.
+
+On day 4, they go back to experiments and optimize the acquisition parameters for the DDM analysis. We come back to the concept of correlation function, introduce the proper fitting form the ISF and discuss the least square method. At the end of the day the colloid project should be finished and the diffusion coefficient compared with the theoretical value given by the \textsc{Stockes-Einstein} formula.
+
+On days 5 and 6, they deal with the bacteria. 
+
+This project is also well suited for a physics-inspired computer project. In this case, the students start from the movies in EPAPS~\ref{epaps}.
+
+
+
+
+
 \section{\label{cl}Conclusion}
 
 Differential Dynamics Microscopy (DDM) is a microscopy technique that probes the dynamics of a system of particles using a microscope, a camera and numerical computations. We exposed this technique in the well-known case of simple Brownian motion before applying it to the more complex case of motile bacteria. We have shown how to extract physically relevant information from DDM based on scaling and how to obtain quantitative values such as the diffusion coefficient or the velocity..
@@ -409,21 +436,26 @@ Differential Dynamics Microscopy (DDM) is a microscopy technique that probes the
 DDM is based  on microscopy and can therefore benefit from  more advanced techniques than bright field imaging. For example, it is possible to use fluorescence microscopy to tell apart colloidal probes in a crowed medium\cite{Hendricks2015}, confocal microscopy\cite{Lu2012}, or polarized light microscopy\citep{20_reufer2012differential}. Apart from colloidal Brownian motion and bacteria, DDM has also been used to characterize ellipsoidal particles\citep{20_reufer2012differential} and kinetics of phase separation\cite{Gao2015} and aggregation\cite{Ferri2011}. Even macroscopic systems, like human crowds shot from above, could be studied by DDM. In that sense, DDM opens much more possibilities than dynamic light scattering and can be used in various contexts both in the lab and in the classroom.
 
 \section*{\label{epaps}EPAPS}
+EPAPS are accessible as zip file containing:
 \begin{itemize}
  \item Movie 1: bright field stack composed of 4000 images of colloidal particle dispersed in water. $f_{acq}=400$ Hz. $\SI{1}{px} = \SI{0.645}{\micro\meter}$. Image size = $(\SI{512}{px})^2$.
  \item Movie 2: bright field stack composed of 4000 images of colloids dispersed in water. $f_{acq}=4$ Hz. $\SI{1}{px} = \SI{0.645}{\micro\meter}$. Image size = $(\SI{512}{px})^2$.
  \item Movie 3: bright field stack composed of 4000 images of $salmonella$ bacteria dispersed in water. $f_{acq}=400$ Hz. $\SI{1}{px} = \SI{0.645}{\micro\meter}$. Image size = $(\SI{512}{px})^2$.
  \item Movie 4: bright field stack composed of 4000 images of $salmonella$ bacteria dispersed in water. $f_{acq}=4$ Hz. $\SI{1}{px} = \SI{0.645}{\micro\meter}$. Image size = $(\SI{512}{px})^2$.
- \item DDM code in Matlab.
- \item DDM code in Python.
 \end{itemize}
+The zip file is accessible at: \url{http://perso.ens-lyon.fr/thomas.gibaud/ddm}.\\
+We have attributed DOI (\href{http://dx.doi.org/10.5281/zenodo.20945}{10.5281/zenodo.20945})\cite{code_github} to the codes.
+
 
 \begin{acknowledgments}
 The authors would like to thank the students who endured the initial versions of this lab work: Alicia Damm, Florine Dubourg, D.G. himself, Paul Haddad, Gabriel Rigon and Sylvie Sue. Fig.~\ref{Slide} and \ref{BrownianTrajectory} where adapted from the work of J\'er\'emy Ferrand and Paco Maurer~\cite{Maurer2014}. 
-This work was supported by the ENS Lyon, the Agence Nationale de la Recherche fran\c{c}aise (ANR-11-PDOC-027) and PALSE XXX.
+This work was supported by the ENS Lyon, the Agence Nationale de la Recherche fran\c{c}aise (ANR-11-PDOC-027) and ML thanks the Region Rh\^one Alpes and
+the Programme d'Avenir Lyon - Saint Etienne (PALSE NoGELPo) for postoctoral grant.
 \end{acknowledgments}
 
-\bibliographystyle{unsrt}
+*Correspondence and requests for materials should be addressed to TG (thomas.gibaud@ens-lyon.fr).
+
+\bibliographystyle{apsrev4-1}
 \bibliography{./DGermain_2015bib}
 
 
