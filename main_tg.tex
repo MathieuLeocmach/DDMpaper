@@ -54,18 +54,20 @@ reprint,%
 
 \preprint{AIP/123-QED}
 
-\title[Differential Dynamics Microscopy to characterize Brownian motion and bacteria motility]{Differential Dynamics Microscopy\\ to characterize Brownian motion and bacteria motility}% Force line breaks with \\
+\title[Differential Dynamic Microscopy to characterize Brownian motion and bacteria motility]{Differential Dynamic Microscopy\\ to characterize Brownian motion and bacteria motility}% Force line breaks with \\
 
 \author{David Germain}
 \author{Mathieu Leocmach}
-\author{Thomas Gibaud$^*$}
+\author{Thomas Gibaud}
+\email[Correspondence and requests for materials should be addressed to ]{thomas.gibaud@ens-lyon.fr}
 \affiliation{Universit\'e de Lyon, Laboratoire de Physique, \'Ecole Normale Sup\'erieure de Lyon, CNRS UMR 5672, 46 All\'ee d'Italie, 69364 Lyon cedex 07, France}
 
 \date{\today}% It is always \today, today,
              %  but any date may be explicitly specified
 
 \begin{abstract}
-Quantifying the dynamics of a suspension of microscopic particles consists in measuring and analyzing the motion of those particles at the individual level or as a group.  Differential Dynamic Microscopy (DDM) precisely does that and constitutes an alternative method to more classical techniques such as dynamics light scattering (DLS) or video particle tracking (VPT). DDM consist in imaging a particle dispersion with a standard light microscope and a camera. The image analysis requires to code and  relies on digital Fourier transform to obtain the intermediate scattering function, an autocorrelation function that characterizes the dynamics of the dispersion. We illustrate DDM on two sets of dispersions, colloids and motile bacteria. We have joined to this article movies of the  colloidal and bacterial suspensions and the DDM code in matlab and python so that the reader may reproduce the image analysis proper to DDM.
+We have developed a lab work module where we teach students how to quantify the dynamics of a suspension of microscopic particles, measuring and analyzing the motion of those particles at the individual level or as a group. 
+Differential Dynamic Microscopy (DDM) is a relatively recent technique that precisely does that and constitutes an alternative method to more classical techniques such as dynamics light scattering (DLS) or video particle tracking (VPT). DDM consists in imaging a particle dispersion with a standard light microscope and a camera. The image analysis requires the students to code and relies on digital Fourier transform to obtain the intermediate scattering function, an autocorrelation function that characterizes the dynamics of the dispersion. We illustrate DDM on two sets of dispersions, colloids and motile bacteria. We have joined to this article movies of the colloidal and bacterial suspensions and the DDM code in Matlab and Python so that the reader may reproduce the image analysis proper to DDM.
 \end{abstract}
 
 \pacs{42.30Va -- 87.17.Jj -- 82.70.Dd -- 87.80}% PACS, the Physics and Astronomy
@@ -80,9 +82,9 @@ Quantifying the dynamics of a suspension of microscopic particles consists in me
 
 Video Particle Tracking (VPT) and Dynamic Light Scattering (DLS) are two of the most well-known techniques that allows to characterize the dynamics of a suspension of microscopic particles. VPT consists in tracking the position of an individual particle as a function of time to digitalize its trajectory. It provides precise information of small portions of a sample \citep{Crocker1996}. DLS consists in shining a laser through the particle suspension and monitoring the fluctuations of scattered intensity as a function of time. It yields average information about the dynamics of a sample \citep{18_sartor2003dynamic}.
 
-Here, we describe an alternative method called Differential Dynamic Microscopy (DDM) recently proposed by Cerbino and Trappe \cite{2_DDM}. DDM is intuitive as it deals with real-space video of the moving objects like VPT, however it uses digital Fourier transform to obtain the same kind of information as DLS.  Contrary to tracking algorithm DDM algorithm is straightforward to implement at the programming level of most undergraduate students. We believe lab work on DDM is a great opportunity to become familiar with a microscope and with reciprocal units, the range of accessible wavenumbers and other nitty-gritty details necessary to tame the power of the Fourier transform. We have joined to this article movies of suspensions with different types of particles and the DDM codes in Matlab and Python so that the reader may reproduce the image analysis proper to DDM, see EPAPS.
+Here, we describe a lab work based on an alternative method called Differential Dynamic Microscopy (DDM) recently proposed by Cerbino and Trappe \cite{2_DDM}. DDM is intuitive as it deals with real-space video of the moving objects like VPT, however it uses digital Fourier transform to obtain the same kind of information as DLS.  Contrary to tracking algorithm DDM algorithm is straightforward to implement at the programming level of most undergraduate students. We believe lab work on DDM is a great opportunity to become familiar with a microscope and with reciprocal units, the range of accessible wavenumbers and other nitty-gritty details necessary to tame the power of the Fourier transform. We have joined to this article movies of suspensions with different types of particles and the DDM codes in Matlab and Python so that the reader may reproduce the image analysis proper to DDM, see EPAPS.
 
-In this article, we apply DDM to two sets of different micrometer particles, colloids at first, then motile bacteria. In section \ref{materials}, we present the materials and method we used to prepare the samples as well as the acquisition parameters. In section \ref{sec:BrownSection}, we use the Brownian motion of colloids as a support to present step by step DDM in a fully understood context. In a last part, section \ref{sec:BactSection}, we apply DDM to \textit{salmonella} bacteria and show that it is possible to characterize entangled dynamics where the bacteria both diffuse and ``swim".
+In this article, we show how to apply DDM to two sets of different micrometer particles, colloids at first, then motile bacteria. In section \ref{materials}, we present the materials and method we use to prepare the samples as well as the acquisition parameters. In section \ref{sec:BrownSection}, we use the Brownian motion of colloids as a support to present step by step DDM in a fully understood context. In section \ref{sec:BactSection}, we apply DDM to \textit{salmonella} bacteria and show that it is possible to characterize entangled dynamics where the bacteria both diffuse and ``swim". Finally in section~\ref{didac} we focus of the didactic aspect of the lab work.
 
 \section{Materials and methods}
 \label{materials}
@@ -182,9 +184,9 @@ The diffusion coefficient $D$, common to (Eq.~\ref{eq:msd}) and (Eq.~\ref{eq:rel
 D = \frac{k_\text{B} T}{6 \pi \eta R}
 \end{equation}
 
-\subsection{Differential Dynamics Microscopy}
+\subsection{Differential Dynamic Microscopy}
 \label{ddm}
-Dynamic Light Scattering (DLS) and Differential Dynamics Microscopy (DDM) are two different ways to obtain the auto-correlation function of a stationary system, that is to say a system whose statistical properties does not change when shifted in time. In DLS we measure the intensity $\hat{I}$ scattered by the sample at a given angle, i.e at a given wavenumber $q$ in the Fourier space. Time autocorrelation of this signal yields the so called Intermediate Scattering Function (ISF)~\citep{19_goodman2005introduction} $F(q, \, \Delta t) = \left\langle \hat{I}^*(\vec{q}, t) \hat{I}(\vec{q}, t+\Delta t) \right\rangle$, where brackets denote the average over the initial time $t$ and the orientation of the wavevector $\vec{q}$. The ISF is normalized into $f$ by
+Dynamic Light Scattering (DLS) and Differential Dynamic Microscopy (DDM) are two different ways to obtain the auto-correlation function of a stationary system, that is to say a system whose statistical properties does not change when shifted in time. In DLS we measure the intensity $\hat{I}$ scattered by the sample at a given angle, i.e at a given wavenumber $q$ in the Fourier space. Time autocorrelation of this signal yields the so called Intermediate Scattering Function (ISF)~\citep{19_goodman2005introduction} $F(q, \, \Delta t) = \left\langle \hat{I}^*(\vec{q}, t) \hat{I}(\vec{q}, t+\Delta t) \right\rangle$, where brackets denote the average over the initial time $t$ and the orientation of the wavevector $\vec{q}$. The ISF is normalized into $f$ by
 \begin{equation}
 f(q, \Delta t) = \frac{F(q, \Delta t)}{F(q, 0)}.
 \end{equation}
@@ -431,7 +433,7 @@ This project is also well suited for a physics-inspired computer project. In thi
 
 \section{\label{cl}Conclusion}
 
-Differential Dynamics Microscopy (DDM) is a microscopy technique that probes the dynamics of a system of particles using a microscope, a camera and numerical computations. We exposed this technique in the well-known case of simple Brownian motion before applying it to the more complex case of motile bacteria. We have shown how to extract physically relevant information from DDM based on scaling and how to obtain quantitative values such as the diffusion coefficient or the velocity..
+Differential Dynamic Microscopy (DDM) is a microscopy technique that probes the dynamics of a system of particles using a microscope, a camera and numerical computations. We exposed this technique in the well-known case of simple Brownian motion before applying it to the more complex case of motile bacteria. We have shown how to extract physically relevant information from DDM based on scaling and how to obtain quantitative values such as the diffusion coefficient or the velocity..
 
 DDM is based  on microscopy and can therefore benefit from  more advanced techniques than bright field imaging. For example, it is possible to use fluorescence microscopy to tell apart colloidal probes in a crowed medium\cite{Hendricks2015}, confocal microscopy\cite{Lu2012}, or polarized light microscopy\citep{20_reufer2012differential}. Apart from colloidal Brownian motion and bacteria, DDM has also been used to characterize ellipsoidal particles\citep{20_reufer2012differential} and kinetics of phase separation\cite{Gao2015} and aggregation\cite{Ferri2011}. Even macroscopic systems, like human crowds shot from above, could be studied by DDM. In that sense, DDM opens much more possibilities than dynamic light scattering and can be used in various contexts both in the lab and in the classroom.
 
@@ -444,7 +446,7 @@ EPAPS are accessible as zip file containing:
  \item Movie 4: bright field stack composed of 4000 images of $salmonella$ bacteria dispersed in water. $f_{acq}=4$ Hz. $\SI{1}{px} = \SI{0.645}{\micro\meter}$. Image size = $(\SI{512}{px})^2$.
 \end{itemize}
 The zip file is accessible at: \url{http://perso.ens-lyon.fr/thomas.gibaud/ddm}.\\
-We have attributed DOI (\href{http://dx.doi.org/10.5281/zenodo.20945}{10.5281/zenodo.20945})\cite{code_github} to the codes.
+We have attributed DOI \href{http://dx.doi.org/10.5281/zenodo.20945}{10.5281/zenodo.20945}\cite{code_github} to the codes.
 
 
 \begin{acknowledgments}
@@ -452,8 +454,6 @@ The authors would like to thank the students who endured the initial versions of
 This work was supported by the ENS Lyon, the Agence Nationale de la Recherche fran\c{c}aise (ANR-11-PDOC-027) and ML thanks the Region Rh\^one Alpes and
 the Programme d'Avenir Lyon - Saint Etienne (PALSE NoGELPo) for postoctoral grant.
 \end{acknowledgments}
-
-*Correspondence and requests for materials should be addressed to TG (thomas.gibaud@ens-lyon.fr).
 
 \bibliographystyle{apsrev4-1}
 \bibliography{./DGermain_2015bib}
