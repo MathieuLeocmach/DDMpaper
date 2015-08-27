@@ -147,16 +147,14 @@ f(\vec{q}, \Delta t) = \frac{F(\vec{q}, \Delta t)}{F(\vec{q}, 0)}.
 \end{equation}
 
 and we compute numerically its spatial 2D Fourier transform $\widehat{\Delta I}$. Once ensemble averaged on $t$, the squared normed of this quantity, the DDM matrix $\mathcal{D}$, is directly related to the correlation function, thanks to the cross product term:
-\begin{equation}
-\begin{align}
+\begin{align*}
 \mathcal{D}(\vec{q},\Delta t) \equiv& \left\langle \left|\widehat{\Delta I}\right|^2 \right\rangle\\
  =& \left\langle \left|\widehat{I}(\vec{q},t+\Delta t) - \widehat{I}(\vec{q},t)\right|^2 \right\rangle \\
 =& \left\langle \left|\widehat{I}(\vec{q},t+ \Delta t)\right|^2 + \left|\widehat{I}(\vec{q},t)\right|^2\right. \\
 &\left.- 2 \, \widehat{I}^*(\vec{q},t+\Delta t) \widehat{I}(\vec{q},t) \right\rangle\\
-=& \underbrace{2F(\vec{q}, 0)}_{\equiv A(\vec{q})} \bigg[ 1-\underbrace{\frac{F(\vec{q}, \Delta t)}{F(\vec{q}, 0)}}_{f(\vec{q}, \Delta t)} \bigg]\\
-\end{align}
-\label{eq:DDM}
-\end{equation}
+=& \underbrace{2F(\vec{q}, 0)}_{\equiv A(\vec{q})} \bigg[ 1-\underbrace{\frac{F(\vec{q}, \Delta t)}{F(\vec{q}, 0)}}_{f(\vec{q}, \Delta t)} \bigg] \addtocounter{equation}{1}\tag{\theequation} \label{eq:DDM}
+\end{align*}
+
 
 \tg{For a system with isotropic dynamics such as the colloidal or the bacteria dispersion,  $\mathcal{D}(\vec{q},\Delta t)$  is isotropic. We therefore radial average $\mathcal{D}(q,\Delta t)$ and drop the dependence on the orientation of the wavevector $\vec{q}$.}
 
