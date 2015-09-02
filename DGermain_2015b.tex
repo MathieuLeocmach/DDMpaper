@@ -246,17 +246,16 @@ In this section, we have verified and dissected the DDM procedure. We have shown
 
 Based on the scalings properties of the $f$, we turn to a model that takes into account \tg{the Brownian motion of bacteria due to $k_BT$, the mean velocity and the velocity distribution during the run, the fact that some of our bacteria are motile and some are not. Considering these new conditions, it can be shown that an adequate $f$ is \citep{1_BactMobil}}:
 
-\begin{multline}
-f(q, \Delta t) = \exp\left(-\frac{\Delta t}{\tau_\text{d}}\right)\left[(1-\alpha) + \alpha \mathcal{P}(q, \Delta t)\right],\\
-\mathcal{P}(q, \Delta t) = \int_{0}^{\infty} P(v)\, \text{sinc}(\Delta t/\tau_\text{r}) \mathrm{d}v, \\
-\text{with }\tau_\text{d} = 1/(Dq^2) \text{ and } \tau_\text{r}=1/(q\overline{v}).
-\label{eq:fbact}
-\end{multline}
+\begin{align}
+f(q, \Delta t) &= \exp\left(-\frac{\Delta t}{\tau_\text{d}}\right)\left[(1-\alpha) + \alpha \mathcal{P}(q, \Delta t)\right],\label{eq:fbact}\\
+\mathcal{P}(q, \Delta t) &= \int_{0}^{\infty} P(v)\, \text{sinc}(\Delta t/\tau_\text{r}) \mathrm{d}v,
+\end{align}
+with $\tau_\text{d} = 1/(Dq^2)$ the characteristic Brownian diffusion time and $\tau_\text{r}=1/(q\overline{v})$ the characteristic run time.
 
-$\tau_\text{d}$ is the characteristic Brownian diffusion time. $\alpha$ is the fraction of motile bacteria. $\text{sinc}(\Delta t/\tau_\text{r})$ is the $f$ of an isotropic population of swimmers at velocity $v$ with a characteristic run time $\tau_\text{r}$. The distribution of velocity $P(v)$ and the integral $\mathcal{P}(q, \Delta t)$ over $v$ take into account that all bacteria do not move at the same velocity. Following Wilson et al.\cite{1_BactMobil}, we chose a Schulz distribution for $P(v)$ which respects the apparent dynamic of bacteria, i.e. peaked around the average velocity $\overline{v}$ and going to 0 when $v \rightarrow \infty$:
-\begin{multline}
+$\alpha$ is the fraction of motile bacteria. $\text{sinc}(\Delta t/\tau_\text{r})$ is the $f$ of an isotropic population of swimmers at velocity $v$. The distribution of velocity $P(v)$ and the integral $\mathcal{P}(q, \Delta t)$ over $v$ take into account that all bacteria do not move at the same velocity. Following Wilson et al.\cite{1_BactMobil}, we chose a Schulz distribution for $P(v)$ which respects the apparent dynamic of bacteria, i.e. peaked around the average velocity $\overline{v}$ and going to 0 when $v \rightarrow \infty$:
+\begin{equation}
 P(v) = \frac{v^Z}{Z!} \left(\frac{Z+1}{\overline{v}}\right)^{Z+1} \exp\left[-\frac{v(Z+1)}{\overline{v}}\right],
-\end{multline}
+\end{equation}
 with $Z$ is a parameter related to the standard deviation $\sigma$ of the distribution $P(v)$:
 \begin{equation}
 Z = \left( \frac{\overline{v}}{\sigma} \right)^2 -1.
@@ -264,7 +263,7 @@ Z = \left( \frac{\overline{v}}{\sigma} \right)^2 -1.
 \end{equation}
 It is then possible to formally calculate the integral $\mathcal{P}$:
 \begin{equation}
-\mathcal{P}(q, \Delta t) = \frac{\sin\left(Z\tan^{-1}\theta\right)}{Z\theta\left(1+\theta^2\right)^{Z/2}}\text{ with }\theta = \frac{\Delta t}{\tau_r(Z+1)}. 
+\mathcal{P}(q, \Delta t) = \frac{\sin\left(Z\tan^{-1}\theta\right)}{Z\theta\left(1+\theta^2\right)^{Z/2}}\text{, with }\theta = \frac{\Delta t}{\tau_r(Z+1)}. 
 \end{equation}
 
 
@@ -278,7 +277,7 @@ It is then possible to formally calculate the integral $\mathcal{P}$:
 \end{figure}
 
 \subsection{Results}
-\tg {Using now the second strategy}, with Eq.~\eqref{eq:fbact} for $f$, fitting $\mathcal{D}(q, \Delta t)$ (Eq. \eqref{eq:D2f}) requires 6 parameters. Even though the 2 decays of $f$ are well separated in time, we have initialized the fit with values very close to the results so that the fit converges:
+\tg {Using the fitting strategy of $\mathcal{D}(q, \Delta t)$} with Eq.~\eqref{eq:fbact} as model for $f$, requires 6 parameters. Even though the 2 decays of $f$ are well separated in time, we have initialized the fit with values very close to the results so that the fit converges:
 \begin{equation}
 \left\{
 \begin{array}{rcl}
