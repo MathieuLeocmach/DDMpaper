@@ -303,7 +303,9 @@ In the model and our experiment we are not characterizing tumble. On the experim
 \end{figure}
 
 \section{\label{didac}Didactic considerations}
-We have tested this lab work of total duration 48h spread on 6 days with three pairs of students. On day 1, they learned to prepare colloidal sample, to use the microscope and camera, section \ref{materials}. We visualize their first movies with the user-friendly and free software  ImageJ. Based on those movies, we ask them various questions: describe the motion of colloids? What triggers this motion? We make the link with the concept of diffusion.What about gravity? Can you build a dimensionless number that characterize the competition between diffusion and gravity? Then we discuss different techniques to access dynamics of a colloidal dispersion, namely, particle tracking, DLS and DDM.
+\tg{We had the chance to test this lab work on an unusually long format: 48h spread on 6 days. However, provided that the DDM code is already written~\cite{code_github}, the colloid part of this paper can be accomplished in a regular lab class of 8h. An other option is a physics-inspired computer project. In this case, the students start from the movies in EPAPS~\ref{epaps} and have to write the code to analyse them.}
+
+For the record, here is the schedule on 6 days with the corresponding physical notions that we introduced. On day 1, they learned to prepare colloidal sample, to use the microscope and camera, section \ref{materials}. We visualize their first movies with the user-friendly and free software  ImageJ. Based on those movies, we ask them various questions: describe the motion of colloids? What triggers this motion? We make the link with the concept of diffusion. What about gravity? Can you build a dimensionless number that characterize the competition between diffusion and gravity? Then we discuss different techniques to access dynamics of a colloidal dispersion, namely, particle tracking, DLS and DDM.
 
 On day 2, they start coding. Spencer and Deutsch provide insightful didactic discussions on computational physics with python\cite{ajp2014deutsh} and matlab\cite{ajp2005spencer}. We discuss with the students how to translate the principle of DDM into an algorithm, section \ref{sec:ddm}. Then they start to code. To keep the code structured and readable for us we give them the signature of each function to code with predefined input and output. They are not supposed to be proficient in coding so we regularly check on them and debug with them. In this first version, the algorithm is not yet optimized: all the images are open, the $\Delta t$ is sampled linearly and we only test the code on 100s of images. In this way the students can feel that unoptimized  calculations are heavy and unpractical for longer movies. All along this process, we discuss the nitty-gritty of the Fourier transform, units conversion and the Nyquist–Shannon sampling theorem.
 
@@ -311,9 +313,7 @@ On day 3, they optimize the code so that it can deal with a stack of 4000 images
 
 On day 4, they go back to experiments and optimize the acquisition parameters for the DDM analysis. We come back to the concept of correlation function, introduce the proper fitting form the autocorrelation function and discuss the least square method. At the end of the day the colloid project should be finished and the diffusion coefficient compared with the theoretical value given by the \textsc{Stockes-Einstein} formula.
 
-On days 5 and 6, they deal with the bacteria. 
-
-\tg{Provided that the DDM code is already written the colloid part of this project can be accomplished in a regular lab class of 8h}. This project is also well suited for a physics-inspired computer project. In this case, the students start from the movies in EPAPS~\ref{epaps}.
+On days 5 and 6, they deal with the bacteria, learning the culture method and the much more complex fitting function. 
 
 
 
@@ -321,7 +321,7 @@ On days 5 and 6, they deal with the bacteria.
 
 \section{\label{cl}Conclusion}
 
-Differential Dynamic Microscopy (DDM) is a microscopy technique that probes the dynamics of a system of particles using a microscope, a camera and numerical computations. We exposed this technique in the well-known case of simple Brownian motion before applying it to the more complex case of a motile bacteria. We have shown how to extract physically relevant information from DDM based on scaling and how to obtain quantitative values such as the diffusion coefficient or the velocity..
+Differential Dynamic Microscopy (DDM) is a microscopy technique that probes the dynamics of a system of particles using a microscope, a camera and numerical computations. We exposed this technique in the well-known case of simple Brownian motion before applying it to the more complex case of a motile bacteria. We have shown how to extract physically relevant information from DDM based on scaling and how to obtain quantitative values such as the diffusion coefficient or the velocity.
 
 DDM is based  on microscopy and can therefore benefit from  more advanced techniques than bright field imaging. For example, it is possible to use fluorescence microscopy to tell apart colloidal probes in a crowed medium\cite{Hendricks2015}, confocal microscopy\cite{Lu2012}, or polarized light microscopy\citep{20_reufer2012differential}. Apart from colloidal Brownian motion, DDM has also been used to characterize ellipsoidal particles\citep{20_reufer2012differential} and kinetics of phase separation\cite{Gao2015} and aggregation\cite{Ferri2011} \tg{and other kind of bacteria, such as E. Coli or C. Reinhardtii\cite{4_Martinez20121637}}. Even macroscopic systems, like human crowds shot from above, could be studied by DDM. In that sense, DDM opens much more possibilities than dynamic light scattering and can be used in various contexts both in the lab and in the classroom.
 
